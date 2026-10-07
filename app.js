@@ -63,12 +63,14 @@ function renderFeatured(){
  const c=cars.find(x=>x.featured)||cars[0];
  const imgs=galleryFor(c).slice(0,3);
  $('#featured-content').innerHTML=`
-  <article class="featured-grid featured-car" data-featured-car="${c.ref}" tabindex="0" aria-label="Abrir ficha de ${c.brand} ${c.line}">
+  <article class="featured-grid featured-car" data-featured-car="${c.ref}" role="button" tabindex="0" aria-label="Abrir ficha de ${c.brand} ${c.line}">
+   <img class="featured-backdrop" src="${c.cover}" alt="" aria-hidden="true" draggable="false">
    <div class="featured-copy">
     <div class="eyebrow">RECOMENDADO</div>
     <h1>${c.brand} ${c.line}<br><em>${c.year}</em></h1>
     <p>${c.pitch}</p>
     <div class="featured-meta"><span>${c.box||'Caja por confirmar'}</span><span>${kmText(c)}</span><span>${priceText(c)}</span></div>
+    <span class="featured-cta">Explorar ficha completa <span aria-hidden="true">↗</span></span>
    </div>
    <div class="featured-stage">
     ${imgs.map((src,i)=>`<img src="${src}" alt="${c.brand} ${c.line}, fotografía ${i+1}" class="featured-slide slide-${i+1}" draggable="false">`).join('')}
@@ -89,7 +91,7 @@ function renderCars(){
  const filtered=cars.filter(c=>(`${c.brand} ${c.line} ${c.version||''} ${c.year} ${c.ref}`.toLowerCase().includes(q))&&(!box||c.box===box)&&(limit===Infinity||(Number.isFinite(c.price)&&c.price<=limit)));
  $('#result-count').textContent=`${filtered.length} vehículos`;
  $('#cars').innerHTML=filtered.length?filtered.map(c=>`
-  <article class="car-card" data-car="${c.ref}" tabindex="0" aria-label="Abrir ficha de ${c.brand} ${c.line}">
+  <article class="car-card" data-car="${c.ref}" role="button" tabindex="0" aria-label="Abrir ficha de ${c.brand} ${c.line}">
    <div class="car-photo">
     <img src="${c.cover}" loading="lazy" draggable="false" alt="${c.brand} ${c.line}, fotografía real del vehículo">
     <div class="card-shade"></div>
@@ -99,7 +101,7 @@ function renderCars(){
      <div class="card-kicker">${c.year} · ${c.box||'Caja por confirmar'}</div>
      <h3>${c.brand} ${c.line}</h3>
      <p>${c.version||''}</p>
-     <div class="overlay-footer"><strong>${priceText(c)}</strong></div>
+     <div class="overlay-footer"><strong>${priceText(c)}</strong><span>Ver ficha ↗</span></div>
     </div>
    </div>
   </article>`).join(''):'<p class="empty-results">No hay vehículos que coincidan. Prueba otros filtros.</p>';
@@ -262,31 +264,36 @@ $('#filter-toggle').onclick=()=>{
 $('#clear-filters').onclick=()=>{$('#search').value='';$('#transmission').value='';$('#price').value='';renderCars();};
 
 const rail=$('#cars');
-let dragActive=false,startX=0,startScroll=0,dragDistance=0,suppressClickUntil=0;
+let dragActive=false,startX=0,startScroll=0,dragDistance=0,suppressNextClick=false;
 rail.addEventListener('dragstart',e=>e.preventDefault());
 rail.addEventListener('pointerdown',e=>{
- if(e.pointerType==='mouse'&&e.button!==0)return;
+ // Touch uses native horizontal scrolling; capture the mouse only after an actual drag.
+ if(e.pointerType!=='mouse'||e.button!==0)return;
  dragActive=true;startX=e.clientX;startScroll=rail.scrollLeft;dragDistance=0;
- rail.classList.add('is-dragging');
- rail.setPointerCapture?.(e.pointerId);
+ suppressNextClick=false;
 });
 rail.addEventListener('pointermove',e=>{
  if(!dragActive)return;
  const dx=e.clientX-startX;
  dragDistance=Math.max(dragDistance,Math.abs(dx));
- if(dragDistance>4)rail.scrollLeft=startScroll-dx;
+ if(dragDistance>9){
+  rail.classList.add('is-dragging');
+  if(!rail.hasPointerCapture?.(e.pointerId))rail.setPointerCapture?.(e.pointerId);
+  rail.scrollLeft=startScroll-dx;
+ }
 });
 function endDrag(e){
  if(!dragActive)return;
  dragActive=false;
  rail.classList.remove('is-dragging');
- if(dragDistance>9)suppressClickUntil=performance.now()+350;
+ suppressNextClick=dragDistance>9;
  try{rail.releasePointerCapture?.(e.pointerId)}catch(_){}
 }
 rail.addEventListener('pointerup',endDrag);
 rail.addEventListener('pointercancel',endDrag);
+rail.addEventListener('pointerleave',e=>{if(!rail.hasPointerCapture?.(e.pointerId))endDrag(e)});
 rail.onclick=e=>{
- if(performance.now()<suppressClickUntil)return;
+ if(suppressNextClick){suppressNextClick=false;return;}
  const card=e.target.closest('.car-card[data-car]');
  if(card)showDetail(card.dataset.car);
 };

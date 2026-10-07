@@ -44,6 +44,27 @@ h2{font-size:clamp(36px,4.4vw,66px);line-height:1.02;letter-spacing:-.045em;font
 .featured-block{padding-top:62px}
 .featured-grid{display:grid;grid-template-columns:minmax(320px,.72fr) minmax(0,1.28fr);gap:52px;align-items:stretch}
 .featured-car{cursor:pointer}
+.featured-car{position:relative;isolation:isolate;overflow:hidden;padding:clamp(24px,4vw,64px);gap:clamp(28px,4vw,64px);min-height:620px;border:1px solid #ffffff24;border-radius:18px;background:#101923;box-shadow:0 28px 80px #0004}
+.featured-backdrop{position:absolute;z-index:-2;inset:-12%;width:124%;height:124%;object-fit:cover;filter:blur(35px) saturate(.7);opacity:.42;pointer-events:none}
+.featured-car::before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(100deg,#09111aeb,#09111ab5 45%,#09111a40)}
+.featured-car .featured-copy{color:#f0f3f7;position:relative}
+.featured-car .featured-copy p{color:#d0d7df}
+.featured-car h1{font-size:clamp(44px,5.1vw,78px);line-height:1.02}
+.featured-car .eyebrow{color:#a8e2f7}
+.featured-car h1 em{color:#a8e2f7}
+.featured-car .featured-meta span{border-color:#ffffff38;color:#eef3f7;background:#ffffff0b;border-radius:4px}
+.featured-car .featured-stage{min-height:480px;align-self:center;aspect-ratio:4/3;border:7px solid #e6e9e4;border-radius:4px;background:#10151c;box-shadow:0 24px 65px #0009,0 0 0 1px #ffffff33;transform:rotate(-1deg);transition:transform .4s}
+.featured-car:hover .featured-stage{transform:rotate(0deg) translateY(-3px)}
+.featured-car .featured-stage img{object-fit:contain}
+.featured-cta{display:inline-flex;align-items:center;gap:32px;margin-top:30px;padding:13px 20px;border:1px solid #d9edf5;border-radius:4px;color:#0b1620;background:#e7f1f5;font-size:12px;font-weight:700;letter-spacing:.03em}
+.featured-cta>span{font-size:20px;line-height:1}
+.overlay-footer{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.overlay-footer>span{font-size:10px;color:#fff;white-space:nowrap}
+.car-grid{touch-action:pan-x pan-y}
+.featured-shade,.featured-badge{pointer-events:none}
+html[data-theme="light"] .featured-car{border-color:#d0cbc1;box-shadow:0 28px 65px #39312320}
+@media(max-width:1050px){.featured-car{grid-template-columns:1fr;min-height:auto}.featured-car .featured-stage{min-height:0;width:100%;max-width:780px;justify-self:center}}
+@media(max-width:700px){.featured-car{padding:28px 20px;border-radius:12px;gap:32px}.featured-car .featured-stage{min-height:0;aspect-ratio:4/3;border-width:4px}.featured-car h1{font-size:clamp(40px,11vw,62px)}.featured-car .featured-copy p{font-size:14px}.featured-cta{width:100%;justify-content:space-between;margin-top:24px}.featured-car .featured-caption{left:14px;bottom:12px}.featured-car .featured-caption strong{font-size:15px}}
 .featured-copy{align-self:center;padding:30px 0}
 .featured-copy p{max-width:520px;color:var(--muted);font-size:16px;margin-bottom:26px}
 .featured-meta{display:flex;flex-wrap:wrap;gap:10px}
