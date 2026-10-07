@@ -58,11 +58,27 @@
   },
   "CC006": {
     "cover": "assets/cars/covers/cc006.jpg",
-    "gallery": []
+    "gallery": [
+      "assets/cars/cc006/02-frontal.jpg",
+      "assets/cars/cc006/03-lateral-izq.jpg",
+      "assets/cars/cc006/04-trasera34.jpg",
+      "assets/cars/cc006/05-lateral-der.jpg",
+      "assets/cars/cc006/06-tablero.jpg",
+      "assets/cars/cc006/07-asientos-delanteros.jpg",
+      "assets/cars/cc006/08-asientos-traseros.jpg"
+    ]
   },
   "CC007": {
     "cover": "assets/cars/covers/cc007.jpg",
-    "gallery": []
+    "gallery": [
+      "assets/cars/cc007/02-frontal.jpg",
+      "assets/cars/cc007/03-lateral-izq.jpg",
+      "assets/cars/cc007/04-trasera34.jpg",
+      "assets/cars/cc007/05-trasera.jpg",
+      "assets/cars/cc007/06-tablero.jpg",
+      "assets/cars/cc007/07-asientos-delanteros.jpg",
+      "assets/cars/cc007/08-asientos-traseros.jpg"
+    ]
   },
   "CC008": {
     "cover": "assets/cars/covers/cc008.jpg",
