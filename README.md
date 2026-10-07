@@ -1,4 +1,4 @@
-# CELESGROUP — Portafolio V0.9.1
+# CELESGROUP — Portafolio V0.9.2
 
 Sitio estático para CELESCAR y CELESPAINT, publicado desde `CELESGROUP/portafolio`, rama `main`, en https://celesgroup.vercel.app/.
 
@@ -7,7 +7,7 @@ Sitio estático para CELESCAR y CELESPAINT, publicado desde `CELESGROUP/portafol
 La fuente comercial es el Google Sheet INVENTARIO_MAESTRO_CELESCAR, pestaña Untitled:
 https://docs.google.com/spreadsheets/d/1VKKQlP0S9iOx1jeNP5yOrBvrStjAKWXM1RtZKaYTlbI/edit
 
-`data/catalogo.json` contiene exclusivamente los campos comerciales para publicar. La ficha lee ese archivo; `app.js` conserva las asociaciones de fotografías por referencia. No se publican vendedor, precio de venta, fuentes de WhatsApp ni alertas administrativas.
+`data/catalogo.json` contiene exclusivamente los campos comerciales para publicar. La ficha lee ese archivo y `data/media.json` define portada y galería por referencia. No se publican vendedor, precio de venta, fuentes de WhatsApp ni alertas administrativas.
 
 Para cambiar el recomendado semanalmente, editar el objeto `featured`:
 - `ref`: referencia disponible, por ejemplo CC012.
@@ -39,3 +39,12 @@ Histórico y evidencia de versiones: `docs/BITACORA.md`.
 - En Drive se preparó un set de 8 fotografías web para CC006 y otro de 8 para CC007 en `03_FOTOS_WEB`.
 - WhatsApp se habilita con el contacto comercial publicado y mensajes precargados por referencia, vehículo y precio.
 - Respaldo previo de producción: rama `backup/v0.9-2026-10-07`.
+
+
+## V0.9.2
+
+- Galerías reales verificadas para CC006 y CC007.
+- Ocho imágenes distintas por vehículo en ficha: portada más siete complementarias.
+- Recursos organizados en carpetas propias por referencia.
+- `data/media.json` concentra la asociación de medios; `app.js` ya no contiene esa matriz.
+- La publicación desde Drive e Inventario Maestro sigue siendo controlada y no automática.
