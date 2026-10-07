@@ -1,20 +1,22 @@
 const photos=(ref,order=[1,2,3,4,5])=>order.map(i=>`assets/cars/${ref.toLowerCase()}-${String(i).padStart(2,'0')}.webp`);
 const jpgPhotos=(ref,count)=>Array.from({length:count},(_,i)=>`assets/cars/${ref.toLowerCase()}-${String(i+1).padStart(2,'0')}.jpg`);
 
-const cars=[
-{ref:'CC012',featured:true,featuredLead:'Un compacto con identidad propia.',featuredGallery:['assets/cars/cc012-01.jpg','assets/cars/covers/cc012.jpg','assets/cars/cc012-02.jpg'],brand:'MINI',line:'Cooper',version:'',year:2011,box:'Mecánica',km:null,motor:null,price:null,cover:'assets/cars/covers/cc012.jpg',gallery:['assets/cars/cc012-01.jpg','assets/cars/cc012-02.jpg','assets/cars/cc012-03.jpg','assets/cars/cc012-04.jpg','assets/cars/cc012-05.jpg','assets/cars/cc012-06.jpg','assets/cars/cc012-07.jpg','assets/cars/cc012-08.jpg'],pitch:'Un MINI con identidad propia: diseño clásico, techo negro, gráficos laterales de inspiración británica e interior azul que lo hacen difícil de pasar por alto. Una opción para quien busca un compacto con estilo y mucha personalidad.'},
-{ref:'CC001',brand:'Mazda',line:'2',version:'Grand Touring LX',year:2024,box:'Automática',km:45000,motor:1500,price:77500000,cover:'assets/cars/covers/cc001.jpg',gallery:photos('CC001',[4,5,1,2,3]),pitch:'Versión Grand Touring LX, caja automática y un formato compacto para moverte con comodidad todos los días.'},
-{ref:'CC003',brand:'Chevrolet',line:'Joy',version:'',year:2023,box:'Mecánica',km:39000,motor:1400,price:47500000,cover:'assets/cars/covers/cc003.jpg',gallery:photos('CC003',[2,4,1,3,5]),pitch:'Modelo 2023 con caja mecánica: una opción práctica para quien prioriza sencillez y funcionalidad.'},
-{ref:'CC002',brand:'Kia',line:'Picanto',version:'Emotion',year:2018,box:'Mecánica',km:135000,motor:1000,price:42900000,cover:'assets/cars/covers/cc002.jpg',gallery:jpgPhotos('CC002',12),pitch:'Un compacto ágil y sencillo de usar, con caja mecánica y tamaño ideal para el ritmo urbano.'},
-{ref:'CC004',brand:'Kia',line:'Picanto',version:'Zenith',year:2020,box:'Mecánica',km:85000,motor:1250,price:46900000,cover:'assets/cars/covers/cc004.jpg',gallery:photos('CC004',[2,4,5,1,3]),pitch:'Picanto Zenith con motor 1.250 cc y caja mecánica: compacto, fácil de llevar y con personalidad.'},
-{ref:'CC005',brand:'Subaru',line:'Forester',version:'Premium 4x4',year:2017,box:'Automática',km:106000,motor:2000,price:78900000,cover:'assets/cars/covers/cc005.jpg',gallery:photos('CC005',[2,3,1,4,5]),pitch:'Forester Premium 4x4: espacio, tracción y versatilidad para quien busca una SUV preparada para distintos caminos.'},
-{ref:'CC006',brand:'Kia',line:'Sportage',version:'Desire',year:2019,box:'Automática',km:78000,motor:2000,price:89500000,cover:'assets/cars/covers/cc006.jpg',gallery:photos('CC006',[3,5,2,4,1]),pitch:'Sportage Desire automática: una SUV con buen espacio y una configuración cómoda para uso diario y viajes.'},
-{ref:'CC007',brand:'Suzuki',line:'Grand Vitara',version:'Híbrida',year:2024,box:'Automática',km:12000,motor:1500,price:108900000,cover:'assets/cars/covers/cc007.jpg',gallery:photos('CC007',[5,4,2,3,1]),pitch:'Grand Vitara híbrida 2024 y automática: una combinación moderna para quien quiere dar el salto a una SUV electrificada.'},
-{ref:'CC008',brand:'Mazda',line:'CX-5',version:'Touring',year:2019,box:'Automática',km:85000,motor:2500,price:90900000,cover:'assets/cars/covers/cc008.jpg',gallery:photos('CC008',[5,2,3,1,4]),pitch:'CX-5 Touring automática con motor 2.5 L: una SUV de diseño sobrio y configuración versátil para ciudad y carretera.'},
-{ref:'CC009',brand:'Audi',line:'Q3 Sportback',version:'',year:2024,box:'Automática',km:38000,motor:2000,price:124900000,cover:'assets/cars/covers/cc009.jpg',gallery:photos('CC009',[3,2,5,1,4]),pitch:'Q3 Sportback 2024: diseño deportivo, caja automática y una presencia claramente premium.'},
-{ref:'CC010',brand:'Mazda',line:'CX-30',version:'Grand Touring LX híbrida',year:2025,box:'Automática',km:45000,motor:2000,price:118900000,cover:'assets/cars/covers/cc010.jpg',gallery:jpgPhotos('CC010',10),pitch:'CX-30 Grand Touring LX híbrida: diseño Mazda, caja automática y tecnología híbrida en un formato SUV compacto.'},
-{ref:'CC011',brand:'Chevrolet',line:'Tracker',version:'Turbo LS',year:2021,box:'Mecánica',km:36000,motor:1200,price:61900000,cover:'assets/cars/covers/cc011.jpg',gallery:jpgPhotos('CC011',6),pitch:'Tracker Turbo LS: formato SUV, motor turbo y caja mecánica para quien busca una alternativa compacta con carácter.'}
-];
+const carMedia={
+ 'CC012':{cover:'assets/cars/covers/cc012.jpg',gallery:['assets/cars/cc012-01.jpg','assets/cars/cc012-02.jpg','assets/cars/cc012-03.jpg','assets/cars/cc012-04.jpg','assets/cars/cc012-05.jpg','assets/cars/cc012-06.jpg','assets/cars/cc012-07.jpg','assets/cars/cc012-08.jpg']},
+ 'CC001':{cover:'assets/cars/covers/cc001.jpg',gallery:photos('CC001',[4,5,1,2,3])},
+ 'CC003':{cover:'assets/cars/covers/cc003.jpg',gallery:photos('CC003',[2,4,1,3,5])},
+ 'CC002':{cover:'assets/cars/covers/cc002.jpg',gallery:jpgPhotos('CC002',12)},
+ 'CC004':{cover:'assets/cars/covers/cc004.jpg',gallery:photos('CC004',[2,4,5,1,3])},
+ 'CC005':{cover:'assets/cars/covers/cc005.jpg',gallery:photos('CC005',[2,3,1,4,5])},
+ 'CC006':{cover:'assets/cars/covers/cc006.jpg',gallery:photos('CC006',[3,5,2,4,1])},
+ 'CC007':{cover:'assets/cars/covers/cc007.jpg',gallery:photos('CC007',[5,4,2,3,1])},
+ 'CC008':{cover:'assets/cars/covers/cc008.jpg',gallery:photos('CC008',[5,2,3,1,4])},
+ 'CC009':{cover:'assets/cars/covers/cc009.jpg',gallery:photos('CC009',[3,2,5,1,4])},
+ 'CC010':{cover:'assets/cars/covers/cc010.jpg',gallery:jpgPhotos('CC010',10)},
+ 'CC011':{cover:'assets/cars/covers/cc011.jpg',gallery:jpgPhotos('CC011',6)}
+};
+let cars=[];
+let featuredConfig={};
 
 const paintServices=[
  {name:'Lámina y pintura',copy:'Reparación y acabado de carrocería definidos después de una valoración técnica del vehículo.'},
@@ -26,7 +28,8 @@ const $=s=>document.querySelector(s);
 const money=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n);
 const num=n=>new Intl.NumberFormat('es-CO').format(n);
 let mode='car';
-let featuredTimer=null;
+const escapeHTML=value=>String(value??'').replace(/[&<>\"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[ch]));
+const valueOrPending=value=>value===null||value===undefined||value===''?'Por confirmar':String(value);
 
 const priceText=c=>Number.isFinite(c.price)?money(c.price):'Precio por confirmar';
 const kmText=c=>Number.isFinite(c.km)?`${num(c.km)} km`:'Kilometraje por confirmar';
@@ -42,8 +45,6 @@ function updateFilterUI(){
 }
 
 function renderFeatured(){
- clearInterval(featuredTimer);
- featuredTimer=null;
  if(mode==='paint'){
   $('#featured-content').innerHTML=`
    <div class="featured-grid paint-feature">
@@ -63,48 +64,30 @@ function renderFeatured(){
    </div>`;
   return;
  }
+ if(!cars.length){$('#featured-content').innerHTML='<p class="data-note">Cargando recomendado…</p>';return;}
  const c=cars.find(x=>x.featured)||cars[0];
- const imgs=(c.featuredGallery||galleryFor(c)).slice(0,3);
+ const image=featuredConfig.image||c.cover;
  $('#featured-content').innerHTML=`
   <div class="cinematic-shell">
    <article class="featured-car cinematic-car" data-featured-car="${c.ref}" role="button" tabindex="0" aria-label="Abrir ficha de ${c.brand} ${c.line}">
     <div class="cinematic-media" aria-hidden="true">
-     ${imgs.map((src,i)=>`<div class="cinematic-scene ${i===0?'is-active':''}"><img class="cinematic-ambient" src="${src}" alt="" draggable="false"><img class="cinematic-photo" src="${src}" alt="" draggable="false" ${i===0?'fetchpriority="high"':''}></div>`).join('')}
+     <div class="cinematic-scene is-active"><img class="cinematic-ambient" src="${image}" alt="" draggable="false"><img class="cinematic-photo" src="${image}" alt="" draggable="false" fetchpriority="high"></div>
     </div>
     <div class="cinematic-veil" aria-hidden="true"></div>
     <div class="featured-copy">
-     <div class="eyebrow">RECOMENDADO</div>
+     <div class="eyebrow">RECOMENDADO DE LA SEMANA</div>
      <h1>${c.brand} ${c.line}<br><em>${c.year}</em></h1>
-     <p>${c.featuredLead||c.pitch}</p>
+     <p>${escapeHTML(featuredConfig.lead||c.pitch)}</p>
      <div class="featured-meta"><span>${c.box||'Caja por confirmar'} · ${c.ref}</span></div>
      <span class="featured-cta">Explorar vehículo <span aria-hidden="true">↗</span></span>
     </div>
-    <div class="cinematic-footer"><div class="cinematic-progress" aria-hidden="true">${imgs.map((_,i)=>`<i class="${i===0?'is-active':''}"></i>`).join('')}</div></div>
+
    </article>
-   <button class="cinematic-pause" type="button" aria-label="Pausar recorrido de fotografías" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="cinematic-count">01 / ${String(imgs.length).padStart(2,'0')}</span></button>
+
   </div>`;
  const card=document.querySelector('[data-featured-car]');
  card?.addEventListener('click',()=>showDetail(c.ref));
  card?.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showDetail(c.ref)}});
- let current=0;
- const shell=$('.cinematic-shell'),pause=$('.cinematic-pause');
- const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
- function advance(){
-  current=(current+1)%imgs.length;
-  shell.querySelectorAll('.cinematic-scene').forEach((el,i)=>el.classList.toggle('is-active',i===current));
-  shell.querySelectorAll('.cinematic-progress i').forEach((el,i)=>el.classList.toggle('is-active',i===current));
-  $('.cinematic-count').textContent=`${String(current+1).padStart(2,'0')} / ${String(imgs.length).padStart(2,'0')}`;
- }
- function setPaused(paused){
-  clearInterval(featuredTimer);featuredTimer=null;
-  shell.classList.toggle('is-paused',paused);
-  pause.setAttribute('aria-pressed',String(paused));
-  pause.setAttribute('aria-label',paused?'Reanudar recorrido de fotografías':'Pausar recorrido de fotografías');
-  pause.firstElementChild.textContent=paused?'▷':'Ⅱ';
-  if(!paused&&imgs.length>1)featuredTimer=setInterval(advance,6500);
- }
- pause.onclick=()=>setPaused(pause.getAttribute('aria-pressed')!=='true');
- setPaused(reduced.matches);
 }
 
 function renderCars(){
@@ -203,8 +186,8 @@ function switchMode(next){
  $('#car-portfolio').hidden=next!=='car';
  $('#paint-portfolio').hidden=next!=='paint';
  $('#portfolio-eyebrow').textContent=next==='car'?'PORTAFOLIO':'SERVICIOS';
- $('#portfolio-title').textContent=next==='car'?'Vehículos que merecen ser vistos con calma':'Cuidado que también merece ser visto con calma';
- $('#portfolio-description').textContent=next==='car'?'Explora nuestro portafolio y conoce cada referencia en detalle.':'Conoce las líneas de trabajo que estamos estructurando para CELESPAINT.';
+ $('#portfolio-title').textContent=next==='car'?'Vehículos en vitrina':'Cuidado para tu carro';
+ $('#portfolio-description').textContent=next==='car'?'Desliza, elige y conoce tu próximo carro.':'Conoce las líneas de trabajo que estamos estructurando para CELESPAINT.';
  $('#history-eyebrow').textContent=next==='car'?'ENTREGAS HISTÓRICAS':'TRABAJOS HISTÓRICOS';
  $('#history-title').textContent=next==='car'?'Historias que siguen rodando':'Resultados que merecen quedar';
  $('#history-description').textContent=next==='car'?'Un archivo de entregas reales, publicado únicamente con evidencia validada.':'Un archivo de trabajos reales, publicado únicamente con evidencia autorizada.';
@@ -213,6 +196,22 @@ function switchMode(next){
  renderProcess();
  history.replaceState(null,'',`#${next==='car'?'celescar':'celespaint'}`);
 }
+
+let catalogUpdatedAt='';
+function formatDate(value){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(value||''))return valueOrPending(value);
+ const [y,m,d]=value.split('-');return `${d}/${m}/${y}`;
+}
+function documentText(value){
+ if(/^\d{4}-\d{2}-\d{2}$/.test(value||'')){
+  const today=new Intl.DateTimeFormat('sv-SE',{timeZone:'America/Bogota'}).format(new Date());
+  return `${formatDate(value)}${value<today?' · Fecha vencida; confirmar renovación':''}`;
+ }
+ if(/^N\/A/i.test(value||''))return 'No aplica según vendedor · Por confirmar';
+ return valueOrPending(value);
+}
+const specsFor=c=>[['Modelo',c.year],['Recorrido',kmText(c)],['Transmisión',c.box],['Motor',motorText(c)],['Combustible',c.fuel],['Color',c.color],['Puertas',c.doors],['Matrícula · ciudad',c.registration]];
+const documentsFor=c=>[['SOAT · vencimiento',documentText(c.soat)],['Tecnomecánica · vencimiento',documentText(c.technical)],['Peritaje',c.inspection],['Pico y placa · dígito registrado',c.plateDigit],['Único dueño',c.oneOwner],['Precio negociable',c.negotiable],['Recibe retoma',c.tradeIn]];
 
 function showDetail(ref){
  const c=cars.find(x=>x.ref===ref);if(!c)return;
@@ -223,9 +222,10 @@ function showDetail(ref){
    <img id="detail-main" class="detail-img" src="${gallery[0]}" alt="${c.brand} ${c.line}, foto real 1 de ${gallery.length}">
    <div class="detail-thumbs">${gallery.map((src,i)=>`<button class="${i===0?'active':''}" data-photo="${src}" data-alt="${c.brand} ${c.line}, foto real ${i+1} de ${gallery.length}" aria-label="Ver foto ${i+1}"><img src="${src}" alt="" loading="lazy"></button>`).join('')}</div>
   </div>
-  <div class="detail-title-row"><div><h2>${c.brand} ${c.line}</h2><p>${c.version||'Versión por confirmar'}</p></div><strong>${priceText(c)}</strong></div>
-  <p class="detail-lead">${c.pitch}</p>
-  <div class="detail-specs"><span>Modelo: ${c.year}</span><span>Recorrido: ${kmText(c)}</span><span>Caja: ${c.box||'Por confirmar'}</span><span>Motor: ${motorText(c)}</span></div>
+  <div class="detail-title-row"><div><h2>${c.brand} ${c.line}</h2><p>${escapeHTML(c.version||'')}</p></div><strong>${priceText(c)}</strong></div>
+  <p class="detail-lead">${escapeHTML(c.pitch)}</p>
+  <section class="detail-section"><h3>Características</h3><dl class="detail-specs">${specsFor(c).map(([label,value])=>`<div><dt>${label}</dt><dd>${escapeHTML(valueOrPending(value))}</dd></div>`).join('')}</dl></section>
+  <section class="detail-section documentation"><h3>Documentación y condiciones</h3><dl class="detail-specs">${documentsFor(c).map(([label,value])=>`<div><dt>${label}</dt><dd>${escapeHTML(valueOrPending(value))}</dd></div>`).join('')}</dl><p class="detail-update">Datos actualizados el ${formatDate(catalogUpdatedAt)}. Fechas y condiciones registradas en el inventario.</p></section>
   <p class="detail-text">Fotografías reales del vehículo. Precio, disponibilidad, documentación y cualquier dato marcado como “por confirmar” deben validarse con el equipo antes de tomar una decisión.</p>
   <div class="detail-actions"><a class="primary" href="https://www.instagram.com/celes.group/" target="_blank" rel="noopener">Contactar al equipo</a><button class="ghost" id="share-car">Compartir ficha</button></div>`;
  $('#detail').showModal();
@@ -335,14 +335,24 @@ $('#detail').onclick=e=>{
  }
 };
 
-renderCars();
-renderPaintServices();
-renderFeatured();
-renderHistory();
-renderProcess();
-
-if(location.hash==='#celespaint')switchMode('paint');
-if(location.hash.startsWith('#vehiculo-')){
- const ref=location.hash.replace('#vehiculo-','');
- if(cars.some(c=>c.ref===ref))showDetail(ref);
+async function initializeCatalog(){
+ try{
+  const response=await fetch('data/catalogo.json?v=0.9');
+  if(!response.ok)throw new Error('Catálogo no disponible');
+  const catalog=await response.json();
+  catalogUpdatedAt=catalog.updatedAt;
+  featuredConfig=catalog.featured||{};
+  cars=catalog.cars.filter(c=>c.status==='DISPONIBLE').map(c=>({...c,...carMedia[c.ref],featured:c.ref===featuredConfig.ref}));
+  cars.sort((a,b)=>Number(b.featured)-Number(a.featured));
+  renderCars();renderPaintServices();renderFeatured();renderHistory();renderProcess();
+  if(location.hash==='#celespaint')switchMode('paint');
+  if(location.hash.startsWith('#vehiculo-')){
+   const ref=location.hash.replace('#vehiculo-','');
+   if(cars.some(c=>c.ref===ref))showDetail(ref);
+  }
+ }catch(error){
+  $('#cars').innerHTML='<p class="empty-results">No pudimos cargar la vitrina. <button type="button" id="retry-catalog">Volver a intentar</button></p>';
+  $('#retry-catalog').onclick=initializeCatalog;
+ }
 }
+initializeCatalog();

@@ -50,3 +50,17 @@ Aprobación explícita: “sí, que quede como el bosquejo”. Base: `c720bab12d
 Código publicado: `408f7589cdc3f3b0a77959812e6c090c0c5eaffe`. La página de producción muestra V0.8. Verificación con navegador de escritorio: tres fotografías cargadas, encuadre `contain`, pausa/reanudación y acceso “Explorar vehículo” que abre MINI Cooper con su descripción completa y nueve imágenes en galería. Sintaxis JavaScript comprobada con `node --check`.
 
 Pendiente: comprobar la composición en un teléfono real y completar los datos comerciales previamente identificados. La guía maestra conserva la planificación empresarial.
+
+## 2026-10-07 — V0.9 · Recomendado fijo, vitrina y fichas completas
+
+Solicitud explícita del usuario: cuatro ajustes sobre V0.8. Base: `533abb233ed4c0f2e5d917c02aaa55b0b4678b8b`.
+
+- Recomendado con fotografía frontal real única; se elimina la secuencia y sus controles. Se amplía la escena para que el vehículo tenga más presencia. Configuración semanal manual en `data/catalogo.json` (`featured.ref`, `image`, `lead`).
+- Título “Vehículos en vitrina”, espacio reducido antes del carrusel, tarjetas mayores y más cercanas.
+- Lectura de la hoja vigente INVENTARIO_MAESTRO_CELESCAR, Untitled!A1:AF14. Se escriben únicamente 12 párrafos en AE2:AE13, preservando el resto de los campos y su formato.
+- MINI CC012 incorpora QP, 1.600 cc, 147.000 km, precio $41.900.000, tres puertas, matrícula Bogotá y documentación registrada.
+- Las fichas muestran combustible, color, puertas, matrícula, peritaje, dígito para pico y placa, único dueño, SOAT, tecnomecánica, negociación y retoma. Los campos vacíos conservan “Por confirmar”. Las fechas reportadas vencidas se señalan sin presuponer renovación.
+- Catálogo comercial separado del JavaScript; se excluyen campos de gestión interna. No hay conexión pública al Google Sheet privado.
+- Contacto con iconos SVG y accesos a Instagram/Facebook. WhatsApp no tiene número confirmado y mantiene ese estado visible.
+- Validación previa: sintaxis JavaScript, diff sin errores de espacios, 12 referencias únicas, 12 descripciones y existencia de todas las fotos referenciadas. Escritura de descripciones verificada por lectura de la hoja.
+- El navegador cloud no puede conectar con el servidor local; la revisión visual y funcional se realiza después del despliegue.

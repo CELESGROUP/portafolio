@@ -1,22 +1,31 @@
-# CELESGROUP — Portafolio V0.8
+# CELESGROUP — Portafolio V0.9
 
-Sitio estático para CELESCAR y CELESPAINT, publicado desde GitHub y desplegado en Vercel.
+Sitio estático para CELESCAR y CELESPAINT, publicado desde `CELESGROUP/portafolio`, rama `main`, en https://celesgroup.vercel.app/.
 
-## V0.8 — experiencia cinematográfica
+## Datos y actualización del recomendado
 
-- El selector CELESCAR / CELESPAINT permanece fijo durante el desplazamiento.
-- El recomendado aplica el bosquejo A aprobado: fotografía frontal real inicial, vehículo completo con encuadre abierto, texto breve y movimiento suave entre tres fotos reales, con pausa y respeto a la preferencia de movimiento reducido.
-- El vehículo recomendado se controla mediante `featured:true` en `app.js`; `featuredGallery` selecciona sus vistas.
-- El recomendado y las tarjetas del portafolio abren su ficha con clic o teclado; se muestran accesos visibles “Explorar vehículo” y “Ver ficha”.
-- La interacción de arrastre distingue entre desplazamiento horizontal y clic mediante un umbral de movimiento.
-- Se mantienen filtros colapsados por defecto.
-- La página se organiza en cinco bloques funcionales sin numeración: recomendado, portafolio, entregas históricas, proceso de confianza y contacto.
-- Los bloques se separan mediante líneas de color discretas.
-- Entregas/trabajos históricos no inventan casos: muestran estado vacío hasta disponer de evidencia validada.
-- Instagram y Facebook están activos; WhatsApp queda visible pero sin enlace hasta validar el número oficial.
-- Se conserva el selector de tema claro / oscuro.
+La fuente comercial es el Google Sheet INVENTARIO_MAESTRO_CELESCAR, pestaña Untitled:
+https://docs.google.com/spreadsheets/d/1VKKQlP0S9iOx1jeNP5yOrBvrStjAKWXM1RtZKaYTlbI/edit
 
-Los datos comerciales y documentos marcados como pendientes deben confirmarse con el equipo antes de una operación.
+`data/catalogo.json` contiene exclusivamente los campos comerciales para publicar. La ficha lee ese archivo; `app.js` conserva las asociaciones de fotografías por referencia. No se publican vendedor, precio de venta, fuentes de WhatsApp ni alertas administrativas.
 
-Registro de cambios y verificaciones: `docs/BITACORA.md`.
+Para cambiar el recomendado semanalmente, editar el objeto `featured`:
+- `ref`: referencia disponible, por ejemplo CC012.
+- `image`: ruta de una fotografía real existente.
+- `lead`: frase corta para la portada.
 
+La foto permanece fija. No hay temporizador ni cambio automático por semana. Seleccionar un nuevo recomendado y publicar el cambio cuando corresponda. Para modificar los demás datos, revisar la hoja vigente y actualizar sus campos correspondientes en el JSON. Esta versión no sincroniza Drive en segundo plano.
+
+## V0.9
+
+- Recomendado integrado con fotografía frontal fija de mayor tamaño, sin movimiento, contador ni pausa.
+- Vitrina con título breve, menor espacio vertical, tarjetas mayores y separación reducida.
+- Descripciones comerciales escritas en Untitled!AE2:AE13 y visibles en las fichas.
+- Características, documentación, fechas de vencimiento y condiciones comerciales provenientes de la hoja.
+- Pico y placa presenta solamente el dígito registrado; no calcula restricciones de circulación.
+- Datos vacíos se muestran por confirmar; una fecha de documento anterior al día actual en Bogotá indica que debe confirmarse su renovación.
+- Instagram y Facebook con accesos e iconos visibles. WhatsApp conserva indicación de número pendiente; no se inventa un teléfono.
+- Clic y teclado abren las fichas; el arrastre horizontal conserva su umbral independiente.
+- Video real de CELESPAINT, selector de unidad y temas claro/oscuro conservados.
+
+Histórico y evidencia de versiones: `docs/BITACORA.md`.
