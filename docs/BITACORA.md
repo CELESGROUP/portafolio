@@ -36,3 +36,17 @@ Verificación en producción con navegador de escritorio: las tres vistas cargan
 La conexión Vercel denegó la consulta del listado de despliegues (403); se verificó el estado mediante GitHub y la versión V0.7 visible en producción. No se ejecutó una comprobación visual en viewport móvil: este navegador no permite abrir la vista local de prueba. La adaptación móvil se revisó en el código.
 
 Próxima continuación: revisión visual en un teléfono real; datos pendientes del MINI, WhatsApp oficial y evidencia autorizada del histórico. La planificación empresarial sigue en la guía maestra de Drive.
+
+## 2026-10-07 — V0.8 · Ajuste a la composición del bosquejo
+
+Aprobación explícita: “sí, que quede como el bosquejo”. Base: `c720bab12d3a9471117be41a7794ffd2580beb6c`.
+
+- Se selecciona la fotografía frontal original `assets/cars/cc012-01.jpg` como primera vista del recomendado. Las siguientes muestran el frente en diagonal y el lateral.
+- Se sustituye el recorte de la foto por encuadre contenido, conservando la proporción y mostrando el vehículo completo. La escena y la tipografía se reducen para recuperar el equilibrio del bosquejo.
+- El recomendado presenta “Un compacto con identidad propia.”, transmisión y referencia. La descripción extensa y los datos pendientes permanecen en la ficha.
+- Se conservan los fundidos, el movimiento suave, el control de pausa y la apertura de la ficha. El acceso visible ahora dice “Explorar vehículo”.
+- Se ajusta la composición móvil por CSS. No se modifica la fotografía original ni se publica el vehículo recreado del bosquejo conceptual.
+
+Código publicado: `408f7589cdc3f3b0a77959812e6c090c0c5eaffe`. La página de producción muestra V0.8. Verificación con navegador de escritorio: tres fotografías cargadas, encuadre `contain`, pausa/reanudación y acceso “Explorar vehículo” que abre MINI Cooper con su descripción completa y nueve imágenes en galería. Sintaxis JavaScript comprobada con `node --check`.
+
+Pendiente: comprobar la composición en un teléfono real y completar los datos comerciales previamente identificados. La guía maestra conserva la planificación empresarial.
