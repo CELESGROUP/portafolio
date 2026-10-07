@@ -78,3 +78,15 @@ La composición móvil se adapta en CSS; verificación visual en móvil pendient
 - Se eliminan únicamente los alias `*-gallery-*`, conservando intactas las imágenes numeradas usadas por las galerías.
 - Verificación posterior: CC001–CC012 quedan con cero grupos de duplicados exactos entre los archivos activos de galería.
 - La documentación registral y las tarjetas de propiedad permanecen exclusivamente en Google Drive privado; no se incorporan datos personales ni PDFs registrales al repositorio público.
+
+
+## 2026-10-07 — V0.9.1 · portada, medios y correcciones críticas
+
+Base protegida: `1b5edfadd9a8976977a19d66af5b04fe10c3f8b6`; respaldo creado en `backup/v0.9-2026-10-07`.
+
+- Se crea una portada editorial CELESCAR separada del recomendado semanal. El hero usa una fotografía pública real de CC001 y el recomendado continúa independiente.
+- Se elimina de `app.js` la matriz manual de medios y se crea `data/media.json` como manifiesto de portada/galería por referencia.
+- CC006 Kia Sportage y CC007 Suzuki Grand Vitara dejan de mostrar las galerías equivocadas. Sus portadas públicas verificadas permanecen activas.
+- En Google Drive se preparan 8 fotografías normalizadas para cada uno en `03_FOTOS_WEB`, con nomenclatura por ángulo. La promoción de esas fotografías privadas al repositorio público se mantiene como paso separado.
+- WhatsApp comercial configurado en +57 315 326 0079; las fichas precargan referencia, vehículo y precio.
+- Se incrementan recursos a V0.9.1 para evitar caché de CSS/JS.

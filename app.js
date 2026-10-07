@@ -1,22 +1,8 @@
-const photos=(ref,order=[1,2,3,4,5])=>order.map(i=>`assets/cars/${ref.toLowerCase()}-${String(i).padStart(2,'0')}.webp`);
-const jpgPhotos=(ref,count)=>Array.from({length:count},(_,i)=>`assets/cars/${ref.toLowerCase()}-${String(i+1).padStart(2,'0')}.jpg`);
-
-const carMedia={
- 'CC012':{cover:'assets/cars/covers/cc012.jpg',gallery:['assets/cars/cc012-01.jpg','assets/cars/cc012-02.jpg','assets/cars/cc012-03.jpg','assets/cars/cc012-04.jpg','assets/cars/cc012-05.jpg','assets/cars/cc012-06.jpg','assets/cars/cc012-07.jpg','assets/cars/cc012-08.jpg']},
- 'CC001':{cover:'assets/cars/covers/cc001.jpg',gallery:photos('CC001',[4,5,1,2,3])},
- 'CC003':{cover:'assets/cars/covers/cc003.jpg',gallery:photos('CC003',[2,4,1,3,5])},
- 'CC002':{cover:'assets/cars/covers/cc002.jpg',gallery:jpgPhotos('CC002',12)},
- 'CC004':{cover:'assets/cars/covers/cc004.jpg',gallery:photos('CC004',[2,4,5,1,3])},
- 'CC005':{cover:'assets/cars/covers/cc005.jpg',gallery:photos('CC005',[2,3,1,4,5])},
- 'CC006':{cover:'assets/cars/covers/cc006.jpg',gallery:photos('CC006',[3,5,2,4,1])},
- 'CC007':{cover:'assets/cars/covers/cc007.jpg',gallery:photos('CC007',[5,4,2,3,1])},
- 'CC008':{cover:'assets/cars/covers/cc008.jpg',gallery:photos('CC008',[5,2,3,1,4])},
- 'CC009':{cover:'assets/cars/covers/cc009.jpg',gallery:photos('CC009',[3,2,5,1,4])},
- 'CC010':{cover:'assets/cars/covers/cc010.jpg',gallery:jpgPhotos('CC010',10)},
- 'CC011':{cover:'assets/cars/covers/cc011.jpg',gallery:jpgPhotos('CC011',6)}
-};
+let mediaConfig={};
+let heroConfig={};
 let cars=[];
 let featuredConfig={};
+const WHATSAPP_NUMBER='573153260079';
 
 const paintServices=[
  {name:'Lámina y pintura',copy:'Reparación y acabado de carrocería definidos después de una valoración técnica del vehículo.'},
@@ -32,6 +18,12 @@ const escapeHTML=value=>String(value??'').replace(/[&<>\"']/g,ch=>({'&':'&amp;',
 const valueOrPending=value=>value===null||value===undefined||value===''?'Por confirmar':String(value);
 
 const priceText=c=>Number.isFinite(c.price)?money(c.price):'Precio por confirmar';
+function whatsappUrl(c){
+ const message=c
+  ? `Hola, me interesa ${c.ref} · ${c.brand} ${c.line}${c.version?` ${c.version}`:''} · ${priceText(c)}. ¿Sigue disponible?`
+  : 'Hola CELESGROUP, quiero información sobre los vehículos disponibles.';
+ return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
 const kmText=c=>Number.isFinite(c.km)?`${num(c.km)} km`:'Kilometraje por confirmar';
 const motorText=c=>Number.isFinite(c.motor)?`${num(c.motor)} cc`:'Motor por confirmar';
 const galleryFor=c=>[c.cover,...(c.gallery||[]).filter(x=>x!==c.cover)];
@@ -42,6 +34,28 @@ function activeFilterCount(){
 function updateFilterUI(){
  const n=activeFilterCount();
  $('#filter-toggle span:first-child').textContent=n?`Buscar / filtrar · ${n}`:'Buscar / filtrar';
+}
+
+function renderHero(){
+ const host=$('#hero-content');
+ if(!host)return;
+ if(!cars.length){host.innerHTML='';return;}
+ const c=cars.find(x=>x.ref===heroConfig.ref)||cars[0];
+ const image=heroConfig.image||c.cover;
+ host.innerHTML=`
+  <article class="home-hero-card">
+   <div class="home-hero-media" aria-hidden="true"><img src="${image}" alt="" fetchpriority="high"></div>
+   <div class="home-hero-copy">
+    <div class="home-hero-eyebrow">${escapeHTML(heroConfig.eyebrow||'01 / CELESCAR · CALI')}</div>
+    <h1>${escapeHTML(heroConfig.title||'Tu próximo capítulo empieza al volante.')}</h1>
+    <p>${escapeHTML(heroConfig.copy||'Explora los vehículos de nuestro portafolio. Conoce cada detalle y conversa con el equipo antes de decidir.')}</p>
+    <a class="home-hero-cta" href="#portafolio">Explorar vehículos</a>
+    <div class="home-hero-note"><span></span> Fotografías reales · Atención cercana</div>
+   </div>
+   <div class="home-hero-badge">CELES / EXPERIENCE</div>
+   <div class="home-hero-caption"><strong>${c.brand} ${c.line} · ${c.version||c.year}</strong><small>Imagen real del portafolio CELESCAR</small></div>
+   <div class="home-hero-services"><span>Un carro. Muchas posibilidades.</span><span>COMPRA & VENTA</span><span>CUIDADO & REPARACIÓN</span><span>ATENCIÓN PERSONALIZADA</span></div>
+  </article>`;
 }
 
 function renderFeatured(){
@@ -181,6 +195,7 @@ function applyTheme(theme){
 
 function switchMode(next){
  mode=next;
+ const hero=$('#hero-home');if(hero)hero.hidden=next==='paint';
  document.body.classList.toggle('paint-mode',next==='paint');
  document.querySelectorAll('[data-mode]').forEach(b=>{const active=b.dataset.mode===next;b.setAttribute('aria-selected',active);b.tabIndex=active?0:-1});
  $('#car-portfolio').hidden=next!=='car';
@@ -227,7 +242,7 @@ function showDetail(ref){
   <section class="detail-section"><h3>Características</h3><dl class="detail-specs">${specsFor(c).map(([label,value])=>`<div><dt>${label}</dt><dd>${escapeHTML(valueOrPending(value))}</dd></div>`).join('')}</dl></section>
   <section class="detail-section documentation"><h3>Documentación y condiciones</h3><dl class="detail-specs">${documentsFor(c).map(([label,value])=>`<div><dt>${label}</dt><dd>${escapeHTML(valueOrPending(value))}</dd></div>`).join('')}</dl><p class="detail-update">Datos actualizados el ${formatDate(catalogUpdatedAt)}. Fechas y condiciones registradas en el inventario.</p></section>
   <p class="detail-text">Fotografías reales del vehículo. Precio, disponibilidad, documentación y cualquier dato marcado como “por confirmar” deben validarse con el equipo antes de tomar una decisión.</p>
-  <div class="detail-actions"><a class="primary" href="https://www.instagram.com/celes.group/" target="_blank" rel="noopener">Contactar al equipo</a><button class="ghost" id="share-car">Compartir ficha</button></div>`;
+  <div class="detail-actions"><a class="primary" href="${whatsappUrl(c)}" target="_blank" rel="noopener">Consultar por WhatsApp</a><button class="ghost" id="share-car">Compartir ficha</button></div>`;
  $('#detail').showModal();
  document.querySelectorAll('[data-photo]').forEach(b=>b.onclick=()=>{const main=$('#detail-main');main.src=b.dataset.photo;main.alt=b.dataset.alt;document.querySelectorAll('[data-photo]').forEach(x=>x.classList.toggle('active',x===b))});
  $('#share-car').onclick=()=>share(`${c.brand} ${c.line} · ${c.ref} · CELESGROUP`,`${location.origin}${location.pathname}#vehiculo-${ref}`);
@@ -326,7 +341,7 @@ rail.addEventListener('keydown',e=>{
 });
 
 document.querySelectorAll('.share').forEach(b=>b.onclick=()=>share());
-$('#whatsapp-contact').onclick=()=>toast('El número oficial de WhatsApp de CELESGROUP está pendiente de validación.');
+$('#whatsapp-contact')?.setAttribute('href',whatsappUrl());
 $('.close').onclick=()=>$('#detail').close();
 $('#detail').onclick=e=>{
  if(e.target===$('#detail')){
@@ -337,14 +352,19 @@ $('#detail').onclick=e=>{
 
 async function initializeCatalog(){
  try{
-  const response=await fetch('data/catalogo.json?v=0.9');
-  if(!response.ok)throw new Error('Catálogo no disponible');
-  const catalog=await response.json();
+  const [catalogResponse,mediaResponse]=await Promise.all([
+   fetch('data/catalogo.json?v=0.9.1'),
+   fetch('data/media.json?v=0.9.1')
+  ]);
+  if(!catalogResponse.ok||!mediaResponse.ok)throw new Error('Catálogo no disponible');
+  const [catalog,media]=await Promise.all([catalogResponse.json(),mediaResponse.json()]);
   catalogUpdatedAt=catalog.updatedAt;
   featuredConfig=catalog.featured||{};
-  cars=catalog.cars.filter(c=>c.status==='DISPONIBLE').map(c=>({...c,...carMedia[c.ref],featured:c.ref===featuredConfig.ref}));
+  heroConfig=catalog.hero||{};
+  mediaConfig=media||{};
+  cars=catalog.cars.filter(c=>c.status==='DISPONIBLE').map(c=>({...c,...(mediaConfig[c.ref]||{}),featured:c.ref===featuredConfig.ref}));
   cars.sort((a,b)=>Number(b.featured)-Number(a.featured));
-  renderCars();renderPaintServices();renderFeatured();renderHistory();renderProcess();
+  renderHero();renderCars();renderPaintServices();renderFeatured();renderHistory();renderProcess();
   if(location.hash==='#celespaint')switchMode('paint');
   if(location.hash.startsWith('#vehiculo-')){
    const ref=location.hash.replace('#vehiculo-','');
