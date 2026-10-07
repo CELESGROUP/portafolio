@@ -353,8 +353,8 @@ $('#detail').onclick=e=>{
 async function initializeCatalog(){
  try{
   const [catalogResponse,mediaResponse]=await Promise.all([
-   fetch('data/catalogo.json?v=0.9.1'),
-   fetch('data/media.json?v=0.9.1')
+   fetch('data/catalogo.json?v=0.9.2'),
+   fetch('data/media.json?v=0.9.2')
   ]);
   if(!catalogResponse.ok||!mediaResponse.ok)throw new Error('Catálogo no disponible');
   const [catalog,media]=await Promise.all([catalogResponse.json(),mediaResponse.json()]);
