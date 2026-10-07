@@ -1,13 +1,13 @@
-# CELESGROUP — Portafolio V0.6
+# CELESGROUP — Portafolio V0.7
 
 Sitio estático para CELESCAR y CELESPAINT, publicado desde GitHub y desplegado en Vercel.
 
-## V0.6 — experiencia editorial
+## V0.7 — experiencia cinematográfica
 
 - El selector CELESCAR / CELESPAINT permanece fijo durante el desplazamiento.
-- Se incorpora un bloque de vehículo recomendado con animación fotográfica sutil basada en imágenes reales.
-- El vehículo recomendado se controla mediante `featured:true` en `app.js`.
-- El carrete del portafolio abre la ficha haciendo clic directamente sobre la imagen/tarjeta; se eliminó el texto “Ver ficha”.
+- El recomendado aplica el bosquejo A aprobado: fotografía integrada en el bloque, fundido hacia el texto y movimiento suave entre tres fotos reales, con pausa y respeto a la preferencia de movimiento reducido.
+- El vehículo recomendado se controla mediante `featured:true` en `app.js`; `featuredGallery` selecciona sus vistas.
+- El recomendado y las tarjetas del portafolio abren su ficha con clic o teclado; se muestran accesos visibles “Explorar ficha completa” y “Ver ficha”.
 - La interacción de arrastre distingue entre desplazamiento horizontal y clic mediante un umbral de movimiento.
 - Se mantienen filtros colapsados por defecto.
 - La página se organiza en cinco bloques funcionales sin numeración: recomendado, portafolio, entregas históricas, proceso de confianza y contacto.
@@ -17,3 +17,6 @@ Sitio estático para CELESCAR y CELESPAINT, publicado desde GitHub y desplegado 
 - Se conserva el selector de tema claro / oscuro.
 
 Los datos comerciales y documentos marcados como pendientes deben confirmarse con el equipo antes de una operación.
+
+Registro de cambios y verificaciones: `docs/BITACORA.md`.
+

@@ -2,7 +2,7 @@ const photos=(ref,order=[1,2,3,4,5])=>order.map(i=>`assets/cars/${ref.toLowerCas
 const jpgPhotos=(ref,count)=>Array.from({length:count},(_,i)=>`assets/cars/${ref.toLowerCase()}-${String(i+1).padStart(2,'0')}.jpg`);
 
 const cars=[
-{ref:'CC012',featured:true,brand:'MINI',line:'Cooper',version:'',year:2011,box:'Mecánica',km:null,motor:null,price:null,cover:'assets/cars/covers/cc012.jpg',gallery:['assets/cars/cc012-01.jpg','assets/cars/cc012-02.jpg','assets/cars/cc012-03.jpg','assets/cars/cc012-04.jpg','assets/cars/cc012-05.jpg','assets/cars/cc012-06.jpg','assets/cars/cc012-07.jpg','assets/cars/cc012-08.jpg'],pitch:'Un MINI con identidad propia: diseño clásico, techo negro, gráficos laterales de inspiración británica e interior azul que lo hacen difícil de pasar por alto. Una opción para quien busca un compacto con estilo y mucha personalidad.'},
+{ref:'CC012',featured:true,featuredGallery:['assets/cars/covers/cc012.jpg','assets/cars/cc012-02.jpg','assets/cars/cc012-03.jpg'],brand:'MINI',line:'Cooper',version:'',year:2011,box:'Mecánica',km:null,motor:null,price:null,cover:'assets/cars/covers/cc012.jpg',gallery:['assets/cars/cc012-01.jpg','assets/cars/cc012-02.jpg','assets/cars/cc012-03.jpg','assets/cars/cc012-04.jpg','assets/cars/cc012-05.jpg','assets/cars/cc012-06.jpg','assets/cars/cc012-07.jpg','assets/cars/cc012-08.jpg'],pitch:'Un MINI con identidad propia: diseño clásico, techo negro, gráficos laterales de inspiración británica e interior azul que lo hacen difícil de pasar por alto. Una opción para quien busca un compacto con estilo y mucha personalidad.'},
 {ref:'CC001',brand:'Mazda',line:'2',version:'Grand Touring LX',year:2024,box:'Automática',km:45000,motor:1500,price:77500000,cover:'assets/cars/covers/cc001.jpg',gallery:photos('CC001',[4,5,1,2,3]),pitch:'Versión Grand Touring LX, caja automática y un formato compacto para moverte con comodidad todos los días.'},
 {ref:'CC003',brand:'Chevrolet',line:'Joy',version:'',year:2023,box:'Mecánica',km:39000,motor:1400,price:47500000,cover:'assets/cars/covers/cc003.jpg',gallery:photos('CC003',[2,4,1,3,5]),pitch:'Modelo 2023 con caja mecánica: una opción práctica para quien prioriza sencillez y funcionalidad.'},
 {ref:'CC002',brand:'Kia',line:'Picanto',version:'Emotion',year:2018,box:'Mecánica',km:135000,motor:1000,price:42900000,cover:'assets/cars/covers/cc002.jpg',gallery:jpgPhotos('CC002',12),pitch:'Un compacto ágil y sencillo de usar, con caja mecánica y tamaño ideal para el ritmo urbano.'},
@@ -26,6 +26,7 @@ const $=s=>document.querySelector(s);
 const money=n=>new Intl.NumberFormat('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0}).format(n);
 const num=n=>new Intl.NumberFormat('es-CO').format(n);
 let mode='car';
+let featuredTimer=null;
 
 const priceText=c=>Number.isFinite(c.price)?money(c.price):'Precio por confirmar';
 const kmText=c=>Number.isFinite(c.km)?`${num(c.km)} km`:'Kilometraje por confirmar';
@@ -41,6 +42,8 @@ function updateFilterUI(){
 }
 
 function renderFeatured(){
+ clearInterval(featuredTimer);
+ featuredTimer=null;
  if(mode==='paint'){
   $('#featured-content').innerHTML=`
    <div class="featured-grid paint-feature">
@@ -61,27 +64,47 @@ function renderFeatured(){
   return;
  }
  const c=cars.find(x=>x.featured)||cars[0];
- const imgs=galleryFor(c).slice(0,3);
+ const imgs=(c.featuredGallery||galleryFor(c)).slice(0,3);
  $('#featured-content').innerHTML=`
-  <article class="featured-grid featured-car" data-featured-car="${c.ref}" role="button" tabindex="0" aria-label="Abrir ficha de ${c.brand} ${c.line}">
-   <img class="featured-backdrop" src="${c.cover}" alt="" aria-hidden="true" draggable="false">
-   <div class="featured-copy">
-    <div class="eyebrow">RECOMENDADO</div>
-    <h1>${c.brand} ${c.line}<br><em>${c.year}</em></h1>
-    <p>${c.pitch}</p>
-    <div class="featured-meta"><span>${c.box||'Caja por confirmar'}</span><span>${kmText(c)}</span><span>${priceText(c)}</span></div>
-    <span class="featured-cta">Explorar ficha completa <span aria-hidden="true">↗</span></span>
-   </div>
-   <div class="featured-stage">
-    ${imgs.map((src,i)=>`<img src="${src}" alt="${c.brand} ${c.line}, fotografía ${i+1}" class="featured-slide slide-${i+1}" draggable="false">`).join('')}
-    <div class="featured-shade"></div>
-    <span class="featured-badge">SELECCIÓN CELESGROUP</span>
-    <div class="featured-caption"><strong>${c.brand} ${c.line}</strong><span>${c.ref} · ${c.version||'Versión por confirmar'}</span></div>
-   </div>
-  </article>`;
+  <div class="cinematic-shell">
+   <article class="featured-car cinematic-car" data-featured-car="${c.ref}" role="button" tabindex="0" aria-label="Abrir ficha de ${c.brand} ${c.line}">
+    <div class="cinematic-media" aria-hidden="true">
+     ${imgs.map((src,i)=>`<div class="cinematic-scene ${i===0?'is-active':''}"><img class="cinematic-ambient" src="${src}" alt="" draggable="false"><img class="cinematic-photo" src="${src}" alt="" draggable="false" ${i===0?'fetchpriority="high"':''}></div>`).join('')}
+    </div>
+    <div class="cinematic-veil" aria-hidden="true"></div>
+    <div class="featured-copy">
+     <div class="eyebrow">RECOMENDADO / CELESCAR</div>
+     <h1>${c.brand} ${c.line}<br><em>${c.year}</em></h1>
+     <p>${c.pitch}</p>
+     <div class="featured-meta"><span>${c.box||'Caja por confirmar'}</span><span>${kmText(c)}</span><span>${priceText(c)}</span></div>
+     <span class="featured-cta">Explorar ficha completa <span aria-hidden="true">↗</span></span>
+    </div>
+    <div class="cinematic-footer"><span>${c.ref} / SELECCIÓN CELESGROUP</span><div class="cinematic-progress" aria-hidden="true">${imgs.map((_,i)=>`<i class="${i===0?'is-active':''}"></i>`).join('')}</div></div>
+   </article>
+   <button class="cinematic-pause" type="button" aria-label="Pausar recorrido de fotografías" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="cinematic-count">01 / ${String(imgs.length).padStart(2,'0')}</span></button>
+  </div>`;
  const card=document.querySelector('[data-featured-car]');
  card?.addEventListener('click',()=>showDetail(c.ref));
  card?.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showDetail(c.ref)}});
+ let current=0;
+ const shell=$('.cinematic-shell'),pause=$('.cinematic-pause');
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+ function advance(){
+  current=(current+1)%imgs.length;
+  shell.querySelectorAll('.cinematic-scene').forEach((el,i)=>el.classList.toggle('is-active',i===current));
+  shell.querySelectorAll('.cinematic-progress i').forEach((el,i)=>el.classList.toggle('is-active',i===current));
+  $('.cinematic-count').textContent=`${String(current+1).padStart(2,'0')} / ${String(imgs.length).padStart(2,'0')}`;
+ }
+ function setPaused(paused){
+  clearInterval(featuredTimer);featuredTimer=null;
+  shell.classList.toggle('is-paused',paused);
+  pause.setAttribute('aria-pressed',String(paused));
+  pause.setAttribute('aria-label',paused?'Reanudar recorrido de fotografías':'Pausar recorrido de fotografías');
+  pause.firstElementChild.textContent=paused?'▷':'Ⅱ';
+  if(!paused&&imgs.length>1)featuredTimer=setInterval(advance,6500);
+ }
+ pause.onclick=()=>setPaused(pause.getAttribute('aria-pressed')!=='true');
+ setPaused(reduced.matches);
 }
 
 function renderCars(){
