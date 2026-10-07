@@ -51,7 +51,7 @@ h2{font-size:clamp(36px,4.4vw,66px);line-height:1.02;letter-spacing:-.045em;font
 .cinematic-scene.is-active{opacity:1}
 .cinematic-ambient{position:absolute;inset:-8%;width:116%;height:116%;object-fit:cover;filter:blur(28px) brightness(.6);opacity:.65}
 .cinematic-photo{position:absolute;right:0;top:0;width:70%;height:100%;object-fit:cover;object-position:center;mask-image:linear-gradient(90deg,transparent,#000 20%);animation:cinematicDrift 19.5s ease-in-out infinite alternate}
-.cinematic-veil{z-index:-1;background:linear-gradient(90deg,#090e15 0%,#090e15f2 24%,#090e15c9 39%,#090e1530 60%,transparent 76%),linear-gradient(0deg,#090e15 0%,transparent 25%,transparent 78%,#090e1590 100%)}
+.cinematic-veil{z-index:-1;background:linear-gradient(90deg,#090e15 0%,#090e15f2 24%,#090e15c9 39%,#090e1530 60%,transparent 76%),linear-gradient(0deg,#090e15 0%,transparent 25%,transparent 78%,#090e15 100%),linear-gradient(270deg,#090e15,transparent 5%)}
 .cinematic-car .featured-copy{position:relative;width:42%;max-width:470px;padding:0 0 38px}
 .cinematic-car .featured-copy p{color:#cdd5dd;font-size:15px;line-height:1.75;max-width:420px}
 .cinematic-car h1{font-size:clamp(48px,5.5vw,80px);line-height:1.02;letter-spacing:-.05em}
