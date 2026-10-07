@@ -90,3 +90,14 @@ Base protegida: `1b5edfadd9a8976977a19d66af5b04fe10c3f8b6`; respaldo creado en `
 - En Google Drive se preparan 8 fotografías normalizadas para cada uno en `03_FOTOS_WEB`, con nomenclatura por ángulo. La promoción de esas fotografías privadas al repositorio público se mantiene como paso separado.
 - WhatsApp comercial configurado en +57 315 326 0079; las fichas precargan referencia, vehículo y precio.
 - Se incrementan recursos a V0.9.1 para evitar caché de CSS/JS.
+
+
+## 2026-10-07 — V0.9.2 · galerías reales CC006 y CC007
+
+- Base de trabajo: V0.9.1 en `main`; cambios desarrollados en `feature/v0.9.2-galerias-reales`.
+- Se publican 8 fotografías verificadas de CC006 Kia Sportage 2019 y 8 de CC007 Suzuki Grand Vitara 2024 desde los sets normalizados de Drive.
+- Los recursos quedan organizados en `assets/cars/cc006/` y `assets/cars/cc007/`.
+- La primera fotografía normalizada coincide con la portada ya publicada; se conserva para trazabilidad, pero `data/media.json` la omite para evitar duplicación visual.
+- Cada ficha presenta 8 imágenes únicas: portada más 7 complementarias.
+- Se incrementa la versión de catálogo y caché a V0.9.2.
+- La documentación privada de los vehículos permanece fuera del repositorio público.
