@@ -68,3 +68,13 @@ Solicitud explícita del usuario: cuatro ajustes sobre V0.8. Base: `533abb233ed4
 Verificación en producción: Vercel informa `success` para `7a4de4439ecdb597b0bbae4cb4813c7b006a4a45`. Las 12 tarjetas abren fichas con descripción, características y documentación; la galería del MINI cambia de fotografía. Los avisos de fechas vencidas aparecen en CC006 y CC007. Lectura posterior de la hoja confirma 12 descripciones y cero cambios ajenos en A:AD. Se refina la máscara de la fotografía fija para que el difuminado se aplique al contorno real de la imagen.
 
 La composición móvil se adapta en CSS; verificación visual en móvil pendiente. El navegador disponible no permite visitar archivos locales ni ofrece ajuste de viewport. No se declara comprobación en teléfono real.
+
+
+## 2026-10-07 — Auditoría de recursos fotográficos
+
+- Se auditan las fotografías activas de CC001–CC012 por nombre, tamaño y SHA en `assets/cars`.
+- Se detectan 13 alias binariamente duplicados: 4 en CC002, 4 en CC010 y 5 en CC011.
+- Antes de eliminarlos se verifica que ninguno de los archivos de texto del repositorio los referencie; `app.js` utiliza las fotografías numeradas.
+- Se eliminan únicamente los alias `*-gallery-*`, conservando intactas las imágenes numeradas usadas por las galerías.
+- Verificación posterior: CC001–CC012 quedan con cero grupos de duplicados exactos entre los archivos activos de galería.
+- La documentación registral y las tarjetas de propiedad permanecen exclusivamente en Google Drive privado; no se incorporan datos personales ni PDFs registrales al repositorio público.
