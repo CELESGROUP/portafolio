@@ -148,3 +148,53 @@ html[data-theme="light"] .detail-lead{color:#313940}
  .card-overlay{left:18px;right:18px;bottom:18px}
  .card-overlay h3{font-size:29px}
 }
+
+/* V0.5 · CURADURIA VISUAL + FILTROS COLAPSABLES */
+.catalog-intro{margin-bottom:28px}
+.catalog-toolbar{display:flex;align-items:center;gap:18px;margin-bottom:20px;min-height:42px}
+.filter-toggle{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;min-width:170px;padding:10px 0;border:0;border-bottom:1px solid var(--border);background:transparent;color:var(--ink);font-size:12px;font-weight:650;letter-spacing:.06em;text-transform:uppercase}
+.filter-toggle:hover{border-color:var(--accent)}
+.filter-icon{font-size:17px;font-weight:300;color:var(--accent)}
+#result-count{padding:0;min-width:auto;color:var(--muted)}
+.swipe-hint{margin-left:auto}
+.filter-panel{overflow:hidden;margin:0 0 25px}
+.filter-panel[hidden]{display:none!important}
+.filter-panel .filters{margin:0;padding:18px 20px;display:grid;grid-template-columns:minmax(260px,1.8fr) 1fr 1fr auto;gap:16px;align-items:end;background:var(--surface);border:1px solid var(--border)}
+.clear-filters{height:43px;padding:0 17px;background:transparent;color:var(--muted);border:1px solid var(--border);font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.clear-filters:hover{color:var(--ink);border-color:var(--accent)}
+.carousel-controls{display:none!important}
+.car-grid{grid-auto-columns:clamp(360px,26vw,470px);gap:32px;cursor:grab;user-select:none;padding-bottom:10px}
+.car-grid.is-dragging{cursor:grabbing;scroll-snap-type:none}
+.car-grid.is-dragging .car-card{pointer-events:none}
+.car-card{outline-offset:4px}
+.car-photo{aspect-ratio:16/10!important}
+.car-photo>img{object-fit:cover!important;object-position:50% 50%;transform:scale(1.001)}
+.car-card:hover .car-photo>img{transform:scale(1.018)!important}
+.card-shade{background:linear-gradient(180deg,rgba(3,7,11,.03) 36%,rgba(3,7,11,.84) 100%)}
+.card-overlay{left:24px;right:24px;bottom:22px}
+.card-overlay h3{font-size:clamp(25px,2vw,32px)}
+.overlay-footer{margin-top:14px;padding-top:12px}
+.new-badge{top:18px;right:18px}
+.car-photo .ref{top:18px;left:18px}
+.detail-img{object-position:center center}
+html[data-theme="light"] .filter-panel .filters{background:#fff}
+html[data-theme="light"] .clear-filters{background:#fff}
+.paint-mode .filter-toggle,.paint-mode #result-count,.paint-mode .swipe-hint,.paint-mode .filter-panel{display:none!important}
+
+@media(max-width:1100px){
+ .car-grid{grid-auto-columns:min(42vw,430px);gap:26px}
+ .filter-panel .filters{grid-template-columns:1.5fr 1fr 1fr}
+ .clear-filters{grid-column:1/-1;width:max-content}
+}
+@media(max-width:700px){
+ .catalog-toolbar{flex-wrap:wrap;gap:10px}
+ .filter-toggle{min-width:155px}
+ #result-count{margin-left:auto}
+ .swipe-hint{width:100%;margin:0;font-size:9px}
+ .filter-panel .filters{display:flex;flex-direction:column;align-items:stretch;padding:16px}
+ .filter-panel .filters label{width:100%;min-width:0}
+ .clear-filters{width:100%}
+ .car-grid{grid-auto-columns:86vw;gap:18px;margin-right:-5vw;padding-right:5vw}
+ .car-photo{aspect-ratio:4/3!important}
+ .card-overlay{left:18px;right:18px;bottom:17px}
+}
