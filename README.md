@@ -1,4 +1,4 @@
-# CELESGROUP — Portafolio V0.9
+# CELESGROUP — Portafolio V0.9.1
 
 Sitio estático para CELESCAR y CELESPAINT, publicado desde `CELESGROUP/portafolio`, rama `main`, en https://celesgroup.vercel.app/.
 
@@ -29,3 +29,13 @@ La foto permanece fija. No hay temporizador ni cambio automático por semana. Se
 - Video real de CELESPAINT, selector de unidad y temas claro/oscuro conservados.
 
 Histórico y evidencia de versiones: `docs/BITACORA.md`.
+
+
+## V0.9.1
+
+- Portada editorial CELESCAR antes del selector de unidades, con CC001 como imagen real de entrada.
+- Las asociaciones de fotografías salen de `app.js` y pasan a `data/media.json`.
+- CC006 y CC007 dejan de mostrar galerías no verificadas; por seguridad se conserva únicamente su portada pública correcta mientras se promueven los sets normalizados.
+- En Drive se preparó un set de 8 fotografías web para CC006 y otro de 8 para CC007 en `03_FOTOS_WEB`.
+- WhatsApp se habilita con el contacto comercial publicado y mensajes precargados por referencia, vehículo y precio.
+- Respaldo previo de producción: rama `backup/v0.9-2026-10-07`.
