@@ -295,7 +295,7 @@
       "pitch": "Haz de cada salida una declaración de estilo con este MINI Cooper QP 2011. Su carrocería blanca con techo negro, diseño frontal inconfundible y detalles de inspiración británica le dan una personalidad difícil de pasar por alto. El motor de 1.600 cc y la caja mecánica acompañan un compacto de tres puertas para quienes disfrutan llevar el control del recorrido. Si buscas un carro con identidad propia, ven a conocer este MINI y descubre qué lo hace especial."
     }
   ],
-  "version": "0.9.1",
+  "version": "0.9.2",
   "hero": {
     "ref": "CC001",
     "image": "assets/cars/covers/cc001.jpg",
