@@ -1,21 +1,19 @@
-# CELESGROUP — Portafolio de prueba V0.3
+# CELESGROUP — Portafolio V0.5
 
-Sitio estático sin dependencias para CELESCAR y CELESPAINT. Incluye catálogo filtrable, fichas compartibles, galerías fotográficas, video de porcelanizado y estructura inicial de histórico.
+Sitio estático para CELESCAR y CELESPAINT, conectado a GitHub y Vercel.
 
-## Novedades V0.3 — 7 de octubre de 2026
+## V0.5 — 7 de octubre de 2026
 
-- Se incorpora **CC012 · MINI Cooper 2011** con 8 fotografías reales validadas visualmente como pertenecientes al mismo vehículo.
-- La caja mecánica de CC012 se identifica en el material fotográfico; precio, kilometraje, motor, versión exacta y documentación quedan expresamente **por confirmar**.
-- Las tarjetas completas son clicables y abren la ficha del vehículo.
-- Cada vehículo con galería permite desplazar fotografías lateralmente; en móvil el portafolio completo también funciona como carrusel horizontal con scroll-snap.
-- Se incorpora el logo CELESGROUP entregado por el usuario al encabezado.
-- La portada CELESCAR destaca el nuevo MINI Cooper.
-- Se agregan descripciones comerciales prudentes, sin inventar condición mecánica, historial ni documentación.
+- Se normalizaron las portadas de los 12 vehículos con una selección fotográfica exterior más consistente, priorizando vistas 3/4 delanteras.
+- El carrete CELESCAR aumenta la separación entre vehículos y usa una proporción horizontal más limpia.
+- Se eliminaron las flechas de navegación; el catálogo se recorre mediante swipe, trackpad, scroll horizontal o arrastre con mouse.
+- Los filtros quedan cerrados por defecto y se abren con **Buscar / filtrar**. El botón muestra cuántos filtros están activos.
+- Se incorporaron las galerías que faltaban:
+  - CC002 Kia Picanto Emotion: 12 fotografías.
+  - CC010 Mazda CX-30: 10 fotografías.
+  - CC011 Chevrolet Tracker: 6 fotografías.
+- Las fichas individuales conservan galería, datos, descripción comercial, compartir y contacto.
+- Se conserva el selector de apariencia **Oscuro / Claro**.
+- CC012 MINI Cooper continúa identificado como nuevo ingreso.
 
-Datos comerciales: se conserva la información existente del inventario y los datos no confirmados se muestran como tales. La disponibilidad y documentación deben validarse antes de cerrar una operación.
-
-`data/historico.json` sigue siendo el registro inicial versionado vacío. No existe todavía login, backend, pagos, reserva, CRM ni sincronización automática con Drive. Compartir usa Web Share o copia del enlace.
-
-Código fuente: repositorio público GitHub `CELESGROUP/portafolio`, conectado con Vercel. No subir documentos privados ni la carpeta completa CELESGROUP.
-
-Guía vigente: Drive `00_DIRECCION/00_GUIA_MAESTRA_CELESGROUP.md`.
+Los datos no confirmados siguen mostrándose expresamente como pendientes. No subir documentos privados al repositorio público.
