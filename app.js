@@ -2,7 +2,7 @@ const photos=(ref,order=[1,2,3,4,5])=>order.map(i=>`assets/cars/${ref.toLowerCas
 const jpgPhotos=(ref,count)=>Array.from({length:count},(_,i)=>`assets/cars/${ref.toLowerCase()}-${String(i+1).padStart(2,'0')}.jpg`);
 
 const cars=[
-{ref:'CC012',featured:true,featuredGallery:['assets/cars/covers/cc012.jpg','assets/cars/cc012-02.jpg','assets/cars/cc012-03.jpg'],brand:'MINI',line:'Cooper',version:'',year:2011,box:'Mecánica',km:null,motor:null,price:null,cover:'assets/cars/covers/cc012.jpg',gallery:['assets/cars/cc012-01.jpg','assets/cars/cc012-02.jpg','assets/cars/cc012-03.jpg','assets/cars/cc012-04.jpg','assets/cars/cc012-05.jpg','assets/cars/cc012-06.jpg','assets/cars/cc012-07.jpg','assets/cars/cc012-08.jpg'],pitch:'Un MINI con identidad propia: diseño clásico, techo negro, gráficos laterales de inspiración británica e interior azul que lo hacen difícil de pasar por alto. Una opción para quien busca un compacto con estilo y mucha personalidad.'},
+{ref:'CC012',featured:true,featuredLead:'Un compacto con identidad propia.',featuredGallery:['assets/cars/cc012-01.jpg','assets/cars/covers/cc012.jpg','assets/cars/cc012-02.jpg'],brand:'MINI',line:'Cooper',version:'',year:2011,box:'Mecánica',km:null,motor:null,price:null,cover:'assets/cars/covers/cc012.jpg',gallery:['assets/cars/cc012-01.jpg','assets/cars/cc012-02.jpg','assets/cars/cc012-03.jpg','assets/cars/cc012-04.jpg','assets/cars/cc012-05.jpg','assets/cars/cc012-06.jpg','assets/cars/cc012-07.jpg','assets/cars/cc012-08.jpg'],pitch:'Un MINI con identidad propia: diseño clásico, techo negro, gráficos laterales de inspiración británica e interior azul que lo hacen difícil de pasar por alto. Una opción para quien busca un compacto con estilo y mucha personalidad.'},
 {ref:'CC001',brand:'Mazda',line:'2',version:'Grand Touring LX',year:2024,box:'Automática',km:45000,motor:1500,price:77500000,cover:'assets/cars/covers/cc001.jpg',gallery:photos('CC001',[4,5,1,2,3]),pitch:'Versión Grand Touring LX, caja automática y un formato compacto para moverte con comodidad todos los días.'},
 {ref:'CC003',brand:'Chevrolet',line:'Joy',version:'',year:2023,box:'Mecánica',km:39000,motor:1400,price:47500000,cover:'assets/cars/covers/cc003.jpg',gallery:photos('CC003',[2,4,1,3,5]),pitch:'Modelo 2023 con caja mecánica: una opción práctica para quien prioriza sencillez y funcionalidad.'},
 {ref:'CC002',brand:'Kia',line:'Picanto',version:'Emotion',year:2018,box:'Mecánica',km:135000,motor:1000,price:42900000,cover:'assets/cars/covers/cc002.jpg',gallery:jpgPhotos('CC002',12),pitch:'Un compacto ágil y sencillo de usar, con caja mecánica y tamaño ideal para el ritmo urbano.'},
@@ -73,13 +73,13 @@ function renderFeatured(){
     </div>
     <div class="cinematic-veil" aria-hidden="true"></div>
     <div class="featured-copy">
-     <div class="eyebrow">RECOMENDADO / CELESCAR</div>
+     <div class="eyebrow">RECOMENDADO</div>
      <h1>${c.brand} ${c.line}<br><em>${c.year}</em></h1>
-     <p>${c.pitch}</p>
-     <div class="featured-meta"><span>${c.box||'Caja por confirmar'}</span><span>${kmText(c)}</span><span>${priceText(c)}</span></div>
-     <span class="featured-cta">Explorar ficha completa <span aria-hidden="true">↗</span></span>
+     <p>${c.featuredLead||c.pitch}</p>
+     <div class="featured-meta"><span>${c.box||'Caja por confirmar'} · ${c.ref}</span></div>
+     <span class="featured-cta">Explorar vehículo <span aria-hidden="true">↗</span></span>
     </div>
-    <div class="cinematic-footer"><span>${c.ref} / SELECCIÓN CELESGROUP</span><div class="cinematic-progress" aria-hidden="true">${imgs.map((_,i)=>`<i class="${i===0?'is-active':''}"></i>`).join('')}</div></div>
+    <div class="cinematic-footer"><div class="cinematic-progress" aria-hidden="true">${imgs.map((_,i)=>`<i class="${i===0?'is-active':''}"></i>`).join('')}</div></div>
    </article>
    <button class="cinematic-pause" type="button" aria-label="Pausar recorrido de fotografías" aria-pressed="false"><span aria-hidden="true">Ⅱ</span><span class="cinematic-count">01 / ${String(imgs.length).padStart(2,'0')}</span></button>
   </div>`;
