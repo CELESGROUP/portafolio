@@ -1,13 +1,21 @@
-# CELESGROUP — Portafolio de prueba V0.2
+# CELESGROUP — Portafolio de prueba V0.3
 
-Sitio estático sin dependencias: CELESCAR, CELESPAINT, catálogo filtrable, fichas compartibles y estructura de histórico. Abrir con servidor HTTP: `python3 -m http.server 8080`.
+Sitio estático sin dependencias para CELESCAR y CELESPAINT. Incluye catálogo filtrable, fichas compartibles, galerías fotográficas, video de porcelanizado y estructura inicial de histórico.
 
-Datos: inventario recibido el 4 de octubre; no se confirma disponibilidad ni oferta comercial. Fotos propias recibidas en Drive; no se incorporan documentos ni datos privados. Se muestran galerías de cinco fotos para CC001 y CC003 a CC009. CC002 queda pendiente porque su carpeta contiene fotografías que no corresponden al Kia Picanto; CC010 y CC011 no tienen material fotográfico. CELESPAINT incorpora el video real recibido de porcelanizado. Los servicios siguen sujetos a validación y no se inventan ventas ni trabajos.
+## Novedades V0.3 — 7 de octubre de 2026
 
-`data/historico.json` es el registro inicial versionado vacío. La interfaz muestra el estado vacío; la carga de casos desde JSON y la administración persistente serán una siguiente iteración. No existe login, backend, pagos, reserva, CRM ni sincronización automática con Drive. Compartir usa Web Share o copia del enlace.
+- Se incorpora **CC012 · MINI Cooper 2011** con 8 fotografías reales validadas visualmente como pertenecientes al mismo vehículo.
+- La caja mecánica de CC012 se identifica en el material fotográfico; precio, kilometraje, motor, versión exacta y documentación quedan expresamente **por confirmar**.
+- Las tarjetas completas son clicables y abren la ficha del vehículo.
+- Cada vehículo con galería permite desplazar fotografías lateralmente; en móvil el portafolio completo también funciona como carrusel horizontal con scroll-snap.
+- Se incorpora el logo CELESGROUP entregado por el usuario al encabezado.
+- La portada CELESCAR destaca el nuevo MINI Cooper.
+- Se agregan descripciones comerciales prudentes, sin inventar condición mecánica, historial ni documentación.
 
-Código fuente: repositorio público GitHub `CELESGROUP/portafolio`, conectado con Vercel. No subir la carpeta completa CELESGROUP: contiene documentos privados. Publicar únicamente los recursos comerciales autorizados de este proyecto.
+Datos comerciales: se conserva la información existente del inventario y los datos no confirmados se muestran como tales. La disponibilidad y documentación deben validarse antes de cerrar una operación.
 
-Histórico futuro: ID, tipo, referencia, fecha, título, descripción, alcance, galería pública, autorización y validación. Los soportes privados permanecen en Drive. Nunca almacenar nombres, placas completas ni documentos de clientes en el catálogo público.
+`data/historico.json` sigue siendo el registro inicial versionado vacío. No existe todavía login, backend, pagos, reserva, CRM ni sincronización automática con Drive. Compartir usa Web Share o copia del enlace.
 
-Guía vigente: Drive `00_DIRECCION/00_GUIA_MAESTRA_CELESGROUP.md`. El código no duplica esa guía.
+Código fuente: repositorio público GitHub `CELESGROUP/portafolio`, conectado con Vercel. No subir documentos privados ni la carpeta completa CELESGROUP.
+
+Guía vigente: Drive `00_DIRECCION/00_GUIA_MAESTRA_CELESGROUP.md`.
