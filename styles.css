@@ -50,7 +50,7 @@ h2{font-size:clamp(36px,4.4vw,66px);line-height:1.02;letter-spacing:-.045em;font
 .cinematic-scene{opacity:0;transition:opacity 1.6s ease-in-out}
 .cinematic-scene.is-active{opacity:1}
 .cinematic-ambient{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;filter:blur(14px) brightness(.48);opacity:.6}
-.cinematic-photo{position:absolute;right:0;top:0;width:68%;max-width:none;height:100%;object-fit:contain;object-position:center;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent),linear-gradient(0deg,transparent,#000 4%,#000 94%,transparent);mask-composite:intersect}
+.cinematic-photo{position:absolute;right:8%;top:0;width:auto;max-width:70%;height:100%;object-fit:contain;object-position:center;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 91%,transparent),linear-gradient(0deg,transparent,#000 4%,#000 94%,transparent);mask-composite:intersect}
 .cinematic-veil{z-index:-1;background:linear-gradient(90deg,#090e15 0%,#090e15e0 27%,#090e1580 40%,transparent 56%),linear-gradient(0deg,#090e15 0%,transparent 12%,transparent 88%,#090e15 100%)}
 .cinematic-car .featured-copy{position:relative;width:34%;max-width:390px;padding:0 0 16px}
 .cinematic-car .featured-copy p{color:#d8e1e8;font-size:17px;line-height:1.5;max-width:360px;margin:22px 0 10px}
@@ -65,7 +65,7 @@ h2{font-size:clamp(36px,4.4vw,66px);line-height:1.02;letter-spacing:-.045em;font
 .overlay-footer>span{font-size:10px;color:#fff;white-space:nowrap}
 .car-grid{touch-action:pan-x pan-y}
 .featured-shade,.featured-badge{pointer-events:none}
-@media(max-width:1050px) and (min-width:701px){.cinematic-car{height:600px;padding:40px 4%}.cinematic-car .featured-copy{width:38%}.cinematic-car h1{font-size:clamp(36px,4.8vw,48px)}.cinematic-photo{right:0;width:65%;max-width:none}.cinematic-car .featured-copy p{font-size:15px}}
+@media(max-width:1050px) and (min-width:701px){.cinematic-car{height:600px;padding:40px 4%}.cinematic-car .featured-copy{width:38%}.cinematic-car h1{font-size:clamp(36px,4.8vw,48px)}.cinematic-photo{right:2%;width:auto;max-width:64%}.cinematic-car .featured-copy p{font-size:15px}}
 @media(max-width:700px){
  .cinematic-car{height:auto;min-height:660px;align-items:flex-end;padding:420px 22px 34px}
  .cinematic-car .featured-copy{width:100%;max-width:none;padding:0}
