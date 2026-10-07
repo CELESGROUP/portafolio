@@ -1,0 +1,126 @@
+{
+  "CC001": {
+    "cover": "assets/cars/covers/cc001.jpg",
+    "gallery": [
+      "assets/cars/cc001-04.webp",
+      "assets/cars/cc001-05.webp",
+      "assets/cars/cc001-01.webp",
+      "assets/cars/cc001-02.webp",
+      "assets/cars/cc001-03.webp"
+    ]
+  },
+  "CC002": {
+    "cover": "assets/cars/covers/cc002.jpg",
+    "gallery": [
+      "assets/cars/cc002-01.jpg",
+      "assets/cars/cc002-02.jpg",
+      "assets/cars/cc002-03.jpg",
+      "assets/cars/cc002-04.jpg",
+      "assets/cars/cc002-05.jpg",
+      "assets/cars/cc002-06.jpg",
+      "assets/cars/cc002-07.jpg",
+      "assets/cars/cc002-08.jpg",
+      "assets/cars/cc002-09.jpg",
+      "assets/cars/cc002-10.jpg",
+      "assets/cars/cc002-11.jpg",
+      "assets/cars/cc002-12.jpg"
+    ]
+  },
+  "CC003": {
+    "cover": "assets/cars/covers/cc003.jpg",
+    "gallery": [
+      "assets/cars/cc003-02.webp",
+      "assets/cars/cc003-04.webp",
+      "assets/cars/cc003-01.webp",
+      "assets/cars/cc003-03.webp",
+      "assets/cars/cc003-05.webp"
+    ]
+  },
+  "CC004": {
+    "cover": "assets/cars/covers/cc004.jpg",
+    "gallery": [
+      "assets/cars/cc004-02.webp",
+      "assets/cars/cc004-04.webp",
+      "assets/cars/cc004-05.webp",
+      "assets/cars/cc004-01.webp",
+      "assets/cars/cc004-03.webp"
+    ]
+  },
+  "CC005": {
+    "cover": "assets/cars/covers/cc005.jpg",
+    "gallery": [
+      "assets/cars/cc005-02.webp",
+      "assets/cars/cc005-03.webp",
+      "assets/cars/cc005-01.webp",
+      "assets/cars/cc005-04.webp",
+      "assets/cars/cc005-05.webp"
+    ]
+  },
+  "CC006": {
+    "cover": "assets/cars/covers/cc006.jpg",
+    "gallery": []
+  },
+  "CC007": {
+    "cover": "assets/cars/covers/cc007.jpg",
+    "gallery": []
+  },
+  "CC008": {
+    "cover": "assets/cars/covers/cc008.jpg",
+    "gallery": [
+      "assets/cars/cc008-05.webp",
+      "assets/cars/cc008-02.webp",
+      "assets/cars/cc008-03.webp",
+      "assets/cars/cc008-01.webp",
+      "assets/cars/cc008-04.webp"
+    ]
+  },
+  "CC009": {
+    "cover": "assets/cars/covers/cc009.jpg",
+    "gallery": [
+      "assets/cars/cc009-03.webp",
+      "assets/cars/cc009-02.webp",
+      "assets/cars/cc009-05.webp",
+      "assets/cars/cc009-01.webp",
+      "assets/cars/cc009-04.webp"
+    ]
+  },
+  "CC010": {
+    "cover": "assets/cars/covers/cc010.jpg",
+    "gallery": [
+      "assets/cars/cc010-01.jpg",
+      "assets/cars/cc010-02.jpg",
+      "assets/cars/cc010-03.jpg",
+      "assets/cars/cc010-04.jpg",
+      "assets/cars/cc010-05.jpg",
+      "assets/cars/cc010-06.jpg",
+      "assets/cars/cc010-07.jpg",
+      "assets/cars/cc010-08.jpg",
+      "assets/cars/cc010-09.jpg",
+      "assets/cars/cc010-10.jpg"
+    ]
+  },
+  "CC011": {
+    "cover": "assets/cars/covers/cc011.jpg",
+    "gallery": [
+      "assets/cars/cc011-01.jpg",
+      "assets/cars/cc011-02.jpg",
+      "assets/cars/cc011-03.jpg",
+      "assets/cars/cc011-04.jpg",
+      "assets/cars/cc011-05.jpg",
+      "assets/cars/cc011-06.jpg"
+    ]
+  },
+  "CC012": {
+    "cover": "assets/cars/covers/cc012.jpg",
+    "gallery": [
+      "assets/cars/cc012-01.jpg",
+      "assets/cars/cc012-02.jpg",
+      "assets/cars/cc012-03.jpg",
+      "assets/cars/cc012-04.jpg",
+      "assets/cars/cc012-05.jpg",
+      "assets/cars/cc012-06.jpg",
+      "assets/cars/cc012-07.jpg",
+      "assets/cars/cc012-08.jpg"
+    ]
+  }
+}
