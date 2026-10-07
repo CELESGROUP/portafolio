@@ -1,19 +1,19 @@
-# CELESGROUP — Portafolio V0.5
+# CELESGROUP — Portafolio V0.6
 
-Sitio estático para CELESCAR y CELESPAINT, conectado a GitHub y Vercel.
+Sitio estático para CELESCAR y CELESPAINT, publicado desde GitHub y desplegado en Vercel.
 
-## V0.5 — 7 de octubre de 2026
+## V0.6 — experiencia editorial
 
-- Se normalizaron las portadas de los 12 vehículos con una selección fotográfica exterior más consistente, priorizando vistas 3/4 delanteras.
-- El carrete CELESCAR aumenta la separación entre vehículos y usa una proporción horizontal más limpia.
-- Se eliminaron las flechas de navegación; el catálogo se recorre mediante swipe, trackpad, scroll horizontal o arrastre con mouse.
-- Los filtros quedan cerrados por defecto y se abren con **Buscar / filtrar**. El botón muestra cuántos filtros están activos.
-- Se incorporaron las galerías que faltaban:
-  - CC002 Kia Picanto Emotion: 12 fotografías.
-  - CC010 Mazda CX-30: 10 fotografías.
-  - CC011 Chevrolet Tracker: 6 fotografías.
-- Las fichas individuales conservan galería, datos, descripción comercial, compartir y contacto.
-- Se conserva el selector de apariencia **Oscuro / Claro**.
-- CC012 MINI Cooper continúa identificado como nuevo ingreso.
+- El selector CELESCAR / CELESPAINT permanece fijo durante el desplazamiento.
+- Se incorpora un bloque de vehículo recomendado con animación fotográfica sutil basada en imágenes reales.
+- El vehículo recomendado se controla mediante `featured:true` en `app.js`.
+- El carrete del portafolio abre la ficha haciendo clic directamente sobre la imagen/tarjeta; se eliminó el texto “Ver ficha”.
+- La interacción de arrastre distingue entre desplazamiento horizontal y clic mediante un umbral de movimiento.
+- Se mantienen filtros colapsados por defecto.
+- La página se organiza en cinco bloques funcionales sin numeración: recomendado, portafolio, entregas históricas, proceso de confianza y contacto.
+- Los bloques se separan mediante líneas de color discretas.
+- Entregas/trabajos históricos no inventan casos: muestran estado vacío hasta disponer de evidencia validada.
+- Instagram y Facebook están activos; WhatsApp queda visible pero sin enlace hasta validar el número oficial.
+- Se conserva el selector de tema claro / oscuro.
 
-Los datos no confirmados siguen mostrándose expresamente como pendientes. No subir documentos privados al repositorio público.
+Los datos comerciales y documentos marcados como pendientes deben confirmarse con el equipo antes de una operación.
