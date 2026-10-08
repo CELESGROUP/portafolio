@@ -35,17 +35,25 @@ export async function validateSources(){
  const carJs=await readFile('src/celescar.js','utf8');
  assert(home.includes('EXPERIENCIA AUTOMOTRIZ'),'Homepage tagline missing');
  assert((home.match(/role="tabpanel"/g)||[]).length===3,'Expected three cinematic scenes');
- assert(home.includes('href="/historia"')&&home.includes('href="/celescar"')&&home.includes('href="/celespaint"'),'Missing original navigation routes');
- assert(build.includes('src/home.js')&&build.includes('home.js?v=cinema1'),'Home module not included in build');
+ assert(home.includes('href="/celescar#portafolio"')&&home.includes('href="/celespaint"')&&home.includes('href="/celescar#servicios"'),'Missing commercial navigation');
+ assert(build.includes("['/historia','Nuestra historia']"),'Nuestra historia must stay in the main menu');
+ assert(home.includes('FINANCIACIÓN')&&home.includes('CELESPAINT'),'Missing commercial scene labels');
+ assert(build.includes('src/home.js')&&build.includes('home.js?v=cinema2'),'Home module not included in build');
  assert((home.match(/<h1[\\s>]/g)||[]).length===1,'Homepage must keep one h1');
  assert(!home.includes('<i aria-hidden="true">↗</i>'),'Homepage cards must not contain arrows');
  assert(carPage.includes('<h2>Nuestros Servicios</h2>'),'Services heading incorrect');
  assert(carPage.includes('<h2>Proceso de venta</h2>'),'Sales process heading incorrect');
  assert((carPage.match(/<li><h3>/g)||[]).length===5,'Process must preserve five steps');
- assert(carPage.includes('class="button primary car-explore"'),'Mobile CTA styling hook missing');
+ assert(carPage.includes('class="car-sales-hero"'),'Commercial header missing');
+ assert(carPage.includes('HABLAR CON UN ASESOR')&&carPage.includes('href="#servicios">FINANCIACIÓN'),'Sales CTAs missing');
+ assert((carPage.match(/data-filter=/g)||[]).length===6,'Six quick filters required');
+ assert(carPage.includes('id="search"')&&carPage.includes('id="sort"'),'Search or ordering missing');
+ assert(carPage.indexOf('id="portafolio"')<carPage.indexOf('id="servicios"'),'Catalog must precede service content');
+ assert(carJs.includes('updateQuickCounts')&&carJs.includes('matchesFilter'),'Quick filters must be data-driven');
+ assert(carJs.includes('sales-card-actions')&&carJs.includes('WHATSAPP'),'Card actions missing');
  assert(css.includes('grid-auto-columns:clamp(270px,31%,420px)'),'Desktop catalog width not compacted');
  assert(css.includes('.process-section .process li:before'),'Process numbers not emphasized');
- assert(layout.includes('/app.js?v=0.10.2')&&carJs.includes("/app.js?v=0.10.2"),'Module version mismatch');
+ assert(layout.includes('/app.js?v=0.11.0')&&carJs.includes("/app.js?v=0.11.0"),'Module version mismatch');
 
  const imagePaths=new Set([site.home.image,site.car.image,site.paint.image]);
  for(const [ref,m] of Object.entries(media)){
