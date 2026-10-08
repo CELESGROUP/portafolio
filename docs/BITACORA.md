@@ -120,3 +120,10 @@ Ajuste posterior: se retira el pie de página ampliado (páginas, contacto y red
 - Se retiran `app.js` y `styles.css` de V0.9.2; el respaldo queda en el historial de `main`.
 
 Validación local en Chromium (escritorio 1440 px y móvil 390 px): las seis páginas cargan sin errores de JavaScript; 12 tarjetas en la vitrina; la ficha abre con su galería y su enlace "Simular cuota"; la búsqueda filtra; el simulador recibe la referencia y recalcula; el menú móvil abre; el encabezado se oculta y reaparece.
+
+
+## 2026-10-08 — V0.12.1 · ajustes en celular
+
+- La portada ocupa exactamente la pantalla visible del celular (unidad `100svh`), sin quedar cortada por las barras del navegador.
+- Se retira la tarjeta "Sigue con" al final de las páginas.
+- En celular, la ruta "Inicio / página" se reemplaza por una fila de enlaces: Inicio · Celescar · Celespaint · Crédito · Historia, con la página actual en su color. En escritorio se conserva la ruta.

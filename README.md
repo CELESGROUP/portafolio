@@ -54,7 +54,7 @@ Histórico y evidencia de versiones: `docs/BITACORA.md`.
 
 - Seis páginas con dirección propia: `/` (portada), `/celescar`, `/celespaint`, `/entregas`, `/financiacion` y `/historia`.
 - Identidad de color por página: CELESCAR azul, CELESPAINT cobre, ENTREGAS verde claro, FINANCIACIÓN dorado.
-- Navegación: encabezado fijo que se oculta al bajar y reaparece al subir, ruta "Inicio / página", pie de página sencillo, tarjeta "Sigue con" al final de cada página y botón flotante de WhatsApp (317 en CELESPAINT, 315 en las demás).
+- Navegación: encabezado fijo que se oculta al bajar y reaparece al subir, ruta "Inicio / página", pie de página sencillo, fila de enlaces Inicio · Celescar · Celespaint · Crédito · Historia al inicio de cada página en celular y botón flotante de WhatsApp (317 en CELESPAINT, 315 en las demás).
 - La vitrina y el simulador leen `data/catalogo.json` y `data/media.json`; la ficha enlaza al simulador con el carro ya elegido (`/financiacion?ref=CC006`).
 - Medios de las páginas en `assets/site/media/`, tipografía Jost alojada en `assets/site/fonts/` y Preact 10.24.3 en `assets/site/js/`.
 - Las páginas se generan con `tools/dc2site.py` a partir de los archivos del diseño; no editar a mano los `.js` generados.

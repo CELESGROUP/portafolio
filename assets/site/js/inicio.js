@@ -1,5 +1,5 @@
-// CELES GROUP · CELESGROUP · Portada · V0.12.0 (generado desde el diseño)
-import { h, render, Component as PreactComponent, Fragment } from '/assets/site/js/preact.module.js?v=0.12.0';
+// CELES GROUP · CELESGROUP · Portada · V0.12.1 (generado desde el diseño)
+import { h, render, Component as PreactComponent, Fragment } from '/assets/site/js/preact.module.js?v=0.12.1';
 
 
 
