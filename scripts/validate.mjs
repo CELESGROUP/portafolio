@@ -18,6 +18,18 @@ export async function validateSources(){
   assert.match(c.ref,/^CC\d{3}$/);assert(media[c.ref],'Missing gallery '+c.ref);
   assert(c.price===null||(Number.isFinite(c.price)&&c.price>=0),'Invalid price '+c.ref);
  }
+ // Visual acceptance checks for the approved V0.10 homepage changes.
+ const home=await readFile('src/pages/index.html','utf8');
+ const layout=await readFile('src/layout.html','utf8');
+ const build=await readFile('scripts/build.mjs','utf8');
+ const app=await readFile('app.js','utf8');
+ const css=await readFile('styles.css','utf8');
+ assert(!/AUTOMOTIVE EXPERIENCE|¿Qué quieres hacer\?/i.test(home),'Old homepage copy is still visible');
+ assert(!/AUTOMOTIVE EXPERIENCE/.test(layout),'Old English tagline in header');
+ assert(layout.includes('EXPERIENCIA AUTOMOTRIZ'),'Missing approved Spanish tagline');
+ assert(build.includes('share-whatsapp')&&app.includes('api.whatsapp.com/send?text='),'Missing header WhatsApp sharing');
+ assert(css.includes('body[data-page="home"] main{height:calc(100dvh - 76px)'),'Homepage is not bounded to viewport');
+ assert(css.includes('.destinations a:hover'),'Missing destination hover affordance');
  const imagePaths=new Set([site.home.image,site.car.image,site.paint.image]);
  for(const [ref,m] of Object.entries(media)){
   assert.equal(new Set([m.cover,...m.gallery]).size,1+m.gallery.length,'Repeated path '+ref);
