@@ -76,3 +76,147 @@ body[data-page="home"] footer{display:none}
  .gateway-heading h1{font-size:clamp(30px,9.6vw,36px)}
  .destinations{gap:4px}
 }
+
+
+/* V0.10 · Refinamiento de portada y CELESCAR · 2026-10-07 */
+.gateway-heading .gateway-tagline{
+ display:block;margin:9px 0 0;color:#b8cbd0;
+ font-size:clamp(8px,1.2vw,10px);font-weight:500;
+ letter-spacing:.28em;line-height:1.4;
+}
+.gateway .destinations a{cursor:pointer}
+.gateway .destinations a>span:last-child{padding-right:0}
+.gateway .destinations a:active{
+ background:#30434b;border-color:#b8d9dc;transform:scale(.995);
+}
+@media(max-width:639px){
+ .gateway-heading .gateway-tagline{font-size:8px;letter-spacing:.22em;margin-top:7px}
+ .gateway .destinations a{border-color:#45545d;background:#182027ed}
+ .gateway .destinations a:focus-visible{outline-offset:2px}
+}
+@media(max-width:639px) and (max-height:650px){
+ .gateway-heading .gateway-tagline{font-size:7px;margin-top:3px}
+}
+
+/* El catálogo protagoniza CELESCAR: hero, vitrina y secciones breves. */
+.car-hero{min-height:0}
+.car-explore{
+ width:max-content;max-width:100%;min-height:44px;gap:18px;
+ padding:10px 17px;border:1px solid var(--line);
+ background:transparent;color:var(--ink);font-size:13px;
+ font-weight:500;transition:background-color .2s,border-color .2s;
+}
+.car-explore:hover,.car-explore:focus-visible{
+ background:var(--surface);border-color:var(--accent);filter:none;
+}
+.car-hero~.section{
+ padding-top:clamp(35px,4.5vw,62px);
+ padding-bottom:clamp(36px,4.8vw,65px);
+ border-top:1px solid var(--line);
+}
+.car-hero~.section .section-head{margin-bottom:22px}
+.car-hero~.portfolio{background:var(--bg)}
+.car-hero~.deliveries{
+ background:color-mix(in srgb,var(--bg) 35%,var(--surface));
+}
+.deliveries .empty-state{
+ padding:8px 0 0;border-top:0;
+ max-width:none;
+}
+.deliveries .empty-state h3{font-size:18px;margin:0 0 6px}
+.deliveries .empty-state p{font-size:13px;margin-bottom:8px}
+.deliveries .empty-state .text-link{font-size:12px}
+.car-services{
+ background:color-mix(in srgb,var(--surface) 55%,var(--bg));
+}
+.car-services .section-head h2,
+.process-section h2{font-size:clamp(30px,3.3vw,44px);margin:0}
+.car-services .service-list{gap:0 28px}
+.car-services .service-list article{
+ gap:16px;padding:15px 0;border-top:1px solid var(--line);
+}
+.car-services .service-list article>span{
+ min-width:24px;font-size:14px;font-variant-numeric:tabular-nums;padding-top:1px;
+}
+.car-services .service-list h3{font-size:19px;line-height:1.25;margin:0 0 5px}
+.car-services .service-list p{font-size:13px;line-height:1.55;margin:0}
+.process-section{background:var(--bg)}
+.process-section .process{
+ display:grid;grid-template-columns:minmax(0,1fr);
+ gap:8px;margin:18px 0 0;
+}
+.process-section .process li{
+ position:relative;min-width:0;min-height:0;
+ padding:12px 14px 13px 58px;border:1px solid var(--line);
+ background:color-mix(in srgb,var(--surface) 30%,var(--bg));
+}
+.process-section .process li:before{
+ left:13px;top:10px;font-size:23px;
+ font-weight:600;letter-spacing:-.07em;line-height:1.1;
+ color:var(--accent);font-variant-numeric:tabular-nums;
+}
+.process-section .process h3{
+ font-size:16px;line-height:1.25;
+ letter-spacing:-.015em;margin:0 0 5px;
+}
+.process-section .process p{
+ font-size:12px;line-height:1.5;margin:0;
+}
+.car-hero~.contact{background:color-mix(in srgb,var(--surface) 20%,var(--bg))}
+.car-hero~.contact h2{font-size:clamp(31px,4vw,49px)}
+.car-hero~.contact .button{margin-bottom:14px}
+.car-hero~.contact .contact-number{margin-bottom:16px}
+
+/* Teléfono: CTA ligero, catálogo legible y bloques delimitados. */
+@media(max-width:639px){
+ .car-hero .unit-copy{padding:32px var(--pad) 18px}
+ .car-hero .unit-copy h1{font-size:clamp(39px,10vw,58px);margin-bottom:12px}
+ .car-hero .unit-copy p{font-size:14px;line-height:1.5;margin-bottom:16px}
+ .car-hero .unit-image{height:clamp(210px,62vw,300px)}
+ .car-hero .hero-footnote{padding-top:5px;padding-bottom:12px}
+ .car-explore{min-height:42px;padding:9px 14px;font-size:12px;gap:15px}
+ .car-explore span{font-size:13px;color:var(--accent)}
+ .car-rail{grid-auto-columns:84%;gap:12px}
+ .car-photo{aspect-ratio:4/3}
+ .car-info{padding:14px 0 5px}
+ .car-info h3{font-size:24px}
+ .car-kicker{font-size:10px;margin-bottom:5px}
+ .car-version{font-size:12px;margin-bottom:8px}
+ .card-bottom{padding-top:9px}
+ .car-hero~.section .section-head{margin-bottom:19px}
+ .car-services .service-list article{padding:14px 0}
+}
+@media(min-width:520px){
+ .process-section .process{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(min-width:640px) and (max-width:999px){
+ .car-rail{grid-auto-columns:46%;gap:16px}
+ .car-photo{aspect-ratio:16/10}
+ .car-hero .unit-image{height:330px}
+ .car-hero .unit-copy{padding-bottom:15px}
+}
+@media(min-width:1000px){
+ .car-hero{min-height:470px}
+ .car-hero .unit-image{height:470px}
+ .car-hero .unit-copy{padding-top:40px;padding-bottom:40px}
+ .car-hero .unit-copy h1{font-size:clamp(48px,4.4vw,70px)}
+ .car-hero~.portfolio{padding-top:45px}
+ .car-rail{
+  grid-auto-columns:clamp(270px,31%,420px);
+  gap:18px;padding-bottom:12px;
+ }
+ .car-photo{aspect-ratio:16/10}
+ .car-info{padding:13px 0 4px}
+ .car-info h3{font-size:23px;margin-bottom:3px;line-height:1.25}
+ .car-kicker{font-size:10px;margin-bottom:5px}
+ .car-version{font-size:12px;margin-bottom:10px;min-height:18px}
+ .card-bottom{padding-top:10px}
+ .card-bottom strong{font-size:17px}
+ .process-section .process{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(min-width:1380px){
+ .process-section .process{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){
+ .car-explore,.gateway .destinations a{transition:none}
+}
