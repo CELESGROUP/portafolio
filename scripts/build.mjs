@@ -41,7 +41,7 @@ const pages=[['index','home','Inicio','Compra, venta y cuidado automotriz. Descu
 for(const [filename,page,title,description] of pages){
  const context=page==='celescar'?[['portafolio','Vehículos'],['entregas','Clientes felices'],['servicios','Servicios'],['proceso','Proceso']]:page==='celespaint'?[['servicios','Servicios'],['trabajos','Trabajos'],['proceso','Proceso']]:[];
  const variables={TITLE:title,DESCRIPTION:description,PAGE:page,
-  NAV:(page==='home'?navLinks.filter(([href])=>href!=='/historia'):navLinks).map(([href,label])=>'<a href="'+href+'"'+(href==='/'+page?' aria-current="page"':'')+'>'+label+'</a>').join('')+(page==='home'?'<a class="share-whatsapp" href="https://api.whatsapp.com/send" target="_blank" rel="noopener noreferrer">Compartir</a>':'')+'<a href="'+(['celescar','celespaint'].includes(page)?'#contacto':whatsapp(page))+'">Contacto</a>',
+  NAV:navLinks.map(([href,label])=>'<a href="'+href+'"'+(href==='/'+page?' aria-current="page"':'')+'>'+label+'</a>').join('')+(page==='home'?'<a class="share-whatsapp" href="https://api.whatsapp.com/send" target="_blank" rel="noopener noreferrer">Compartir</a>':'')+'<a href="'+(['celescar','celespaint'].includes(page)?'#contacto':whatsapp(page))+'">Contacto</a>',
   MOBILE_ACTION:page==='home'?'<a class="mobile-share share-whatsapp" href="https://api.whatsapp.com/send" target="_blank" rel="noopener noreferrer">Compartir</a>':'<a class="mobile-history" href="/historia">Historia</a>',
   CONTEXT:context.map(([id,label])=>'<a href="/'+page+'#'+id+'">'+label+'</a>').join(''),
   WHATSAPP:whatsapp(page),INSTAGRAM:site.instagram,FACEBOOK:site.facebook,
@@ -52,7 +52,7 @@ for(const [filename,page,title,description] of pages){
   ORIGIN:story.origen?.estado_publicacion==='PUBLICADO'?'<p>'+esc(story.origen.texto)+'</p>':'<p class="story-pending">Estamos preparando el relato de nuestros primeros pasos. Pronto podrás conocerlo aquí.</p>',
   HISTORY_VIDEO:story.video?.estado_publicacion==='PUBLICADO'?'<video controls playsinline preload="none" poster="'+manifest[story.video.poster].src+'"><source src="/'+esc(story.video.archivo_web)+'" type="video/mp4"></video>':'<p class="story-pending">Nuestro video de historia estará disponible próximamente.</p>',
   HISTORY_IMAGES:story.fotografias.filter(x=>x.estado_publicacion==='PUBLICADO').map(x=>'<figure>'+image(x.archivo_web,x.descripcion,'loading="lazy" sizes="80vw"')+'<figcaption>'+esc(x.descripcion)+'</figcaption></figure>').join('')||'<p class="story-pending">Estamos reuniendo las fotografías de nuestra evolución.</p>',
-  SCRIPT:page==='celescar'?'<script type="module" src="/celescar.js?v=0.10.2"></script>':page==='home'?'<script type="module" src="/home.js?v=cinema1"></script>':''};
+  SCRIPT:page==='celescar'?'<script type="module" src="/celescar.js?v=0.11.0"></script>':page==='home'?'<script type="module" src="/home.js?v=cinema2"></script>':''};
  let content=await readFile('src/pages/'+filename+'.html','utf8');
  const fill=s=>s.replace(/\{\{([A-Z_]+)\}\}/g,(_,k)=>{if(!(k in variables))throw new Error('Unknown template '+k);return variables[k];});
  content=fill(content);variables.CONTENT=content;
