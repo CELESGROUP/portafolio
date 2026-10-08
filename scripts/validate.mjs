@@ -30,6 +30,19 @@ export async function validateSources(){
  assert(build.includes('share-whatsapp')&&app.includes('api.whatsapp.com/send?text='),'Missing header WhatsApp sharing');
  assert(css.includes('body[data-page="home"] main{height:calc(100dvh - 76px)'),'Homepage is not bounded to viewport');
  assert(css.includes('.destinations a:hover'),'Missing destination hover affordance');
+ // V0.10 follow-up: mobile routes, catalog priority and section labels.
+ const carPage=await readFile('src/pages/celescar.html','utf8');
+ const carJs=await readFile('src/celescar.js','utf8');
+ assert(home.includes('<p class="gateway-tagline">EXPERIENCIA AUTOMOTRIZ</p>'),'Homepage tagline missing below title');
+ assert(!/<i[^>]*>↗<\\/i>/.test(home),'Homepage cards must not contain arrows');
+ assert(carPage.includes('<h2>Nuestros Servicios</h2>'),'Services heading incorrect');
+ assert(carPage.includes('<h2>Proceso de venta</h2>'),'Sales process heading incorrect');
+ assert((carPage.match(/<li><h3>/g)||[]).length===5,'Process must preserve five steps');
+ assert(carPage.includes('class="button primary car-explore"'),'Mobile CTA styling hook missing');
+ assert(css.includes('grid-auto-columns:clamp(270px,31%,420px)'),'Desktop catalog width not compacted');
+ assert(css.includes('.process-section .process li:before'),'Process numbers not emphasized');
+ assert(layout.includes('/app.js?v=0.10.2')&&carJs.includes("/app.js?v=0.10.2"),'Module version mismatch');
+
  const imagePaths=new Set([site.home.image,site.car.image,site.paint.image]);
  for(const [ref,m] of Object.entries(media)){
   assert.equal(new Set([m.cover,...m.gallery]).size,1+m.gallery.length,'Repeated path '+ref);
