@@ -1,5 +1,14 @@
 .env*
 .vercel/
 node_modules/
+dist/
+qa-artifacts/
 .DS_Store
 ABRIR_PORTAFOLIO.html
+# Private originals and administrative files must NEVER enter this public repo.
+VEHICULOS_VENDIDOS/01_ORIGINALES/
+*.pdf
+*.xlsx
+*.xls
+*.docx
+*.zip

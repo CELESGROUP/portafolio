@@ -1,0 +1,20 @@
+{
+  "version": "0.10.0",
+  "whatsapp": "573153260079",
+  "instagram": "https://www.instagram.com/celes.group/",
+  "facebook": "https://www.facebook.com/celescar.carros",
+  "city": "Cali",
+  "home": {
+    "image": "assets/cars/covers/cc009.jpg",
+    "alt": "Audi Q3 Sportback gris, fotografía real del portafolio CELESCAR"
+  },
+  "car": {
+    "image": "assets/cars/covers/cc001.jpg",
+    "alt": "Mazda 2 blanco, fotografía real del portafolio CELESCAR"
+  },
+  "paint": {
+    "image": "assets/porcelanizado-poster.webp",
+    "alt": "Detalle de un trabajo real de porcelanizado CELESPAINT",
+    "video": "assets/porcelanizado.mp4"
+  }
+}

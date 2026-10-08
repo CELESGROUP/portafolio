@@ -1,0 +1,17 @@
+{
+  "name": "celesgroup-portafolio",
+  "version": "0.10.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/preview.mjs",
+    "validate": "node scripts/validate.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "sharp": "0.34.3"
+  }
+}

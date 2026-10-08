@@ -1,0 +1,29 @@
+<section class="unit-hero car-hero">
+ <div class="unit-copy"><span class="eyebrow">01 / CELESCAR</span><h1>Encuentra tu<br>próximo carro<span class="accent">.</span></h1><p>Una nueva etapa empieza con una buena elección.</p><a class="button primary" href="#portafolio">Explorar vehículos <span aria-hidden="true">↗</span></a></div>
+ <div class="unit-image">{{CAR_IMAGE}}</div><span class="hero-footnote">COMPRA · VENTA · FINANCIACIÓN</span>
+</section>
+<section id="portafolio" class="section portfolio">
+ <div class="section-head"><div><span class="eyebrow">EL SIGUIENTE ES TUYO</span><h2>Vehículos en vitrina</h2></div><p>Desliza. Descubre. Elige.</p></div>
+ <div class="catalog-toolbar"><button id="filter-toggle" class="outline-button" aria-expanded="false" aria-controls="filter-panel">Buscar / filtrar <span aria-hidden="true">＋</span></button><span id="result-count" role="status">Cargando vehículos…</span><div class="rail-controls"><button class="icon-button" id="rail-prev" aria-label="Vehículos anteriores">←</button><button class="icon-button" id="rail-next" aria-label="Vehículos siguientes">→</button></div></div>
+ <div id="filter-panel" hidden><form class="filters" role="search"><label>Buscar vehículo<input id="search" type="search" placeholder="Marca, línea o referencia" autocomplete="off"></label><label>Transmisión<select id="transmission"><option value="">Todas</option><option>Automática</option><option>Mecánica</option></select></label><label>Precio máximo<select id="price"><option value="">Todos</option><option value="50000000">Hasta $50 millones</option><option value="90000000">Hasta $90 millones</option><option value="130000000">Hasta $130 millones</option></select></label><button type="reset" class="outline-button">Limpiar</button></form></div>
+ <div id="cars" class="car-rail" tabindex="0" aria-label="Vehículos en vitrina"><p class="muted">Preparando la vitrina…</p></div><noscript><p>Activa JavaScript para explorar y filtrar vehículos. También puedes consultarnos por WhatsApp.</p></noscript>
+ <p class="fineprint" id="catalog-date">Fotografías reales de cada vehículo.</p>
+</section>
+<section id="entregas" class="section deliveries">
+ <div class="section-head"><div><span class="eyebrow">NUEVOS CAMINOS</span><h2>Clientes felices</h2></div><p>El comienzo de muchas historias al volante.</p></div>
+ <div id="deliveries">{{DELIVERIES}}</div>
+</section>
+<section id="servicios" class="section">
+ <div class="section-head"><div><span class="eyebrow">TE ACOMPAÑAMOS</span><h2>La elección es tuya.<br>El respaldo, nuestro.</h2></div></div>
+ <div class="service-list">
+ <article><span>01</span><div><h3>Asesoría personalizada</h3><p>Conversemos sobre tu próximo carro y las opciones que se ajustan a lo que buscas.</p></div></article>
+ <article><span>02</span><div><h3>Venta de vehículos</h3><p>Conoce las características y condiciones de cada vehículo antes de decidir.</p></div></article>
+ <article><span>03</span><div><h3>Gestión de créditos</h3><p>Acompañamiento para explorar alternativas de financiación, sujetas a estudio y aprobación de la entidad.</p></div></article>
+ <article><span>04</span><div><h3>Perfilamiento financiero</h3><p>Orientación y consulta en centrales de riesgo únicamente con tu autorización previa.</p></div></article>
+ </div>
+</section>
+<section id="proceso" class="section process-section"><span class="eyebrow">ASÍ EMPIEZA TU PRÓXIMA ETAPA</span><h2>De la elección<br>a la entrega.</h2><ol class="process">
+ <li><h3>Explorar vehículo</h3><p>Conoce la vitrina y sus fichas.</p></li><li><h3>Asesoría</h3><p>Resuelve tus preguntas con el equipo.</p></li><li><h3>Validación / financiación</h3><p>Revisa el vehículo y tus alternativas.</p></li><li><h3>Documentación</h3><p>Confirma los soportes y condiciones.</p></li><li><h3>Entrega</h3><p>Empieza tu próximo recorrido.</p></li>
+</ol></section>
+{{CONTACT}}
+<dialog id="detail" class="detail" aria-labelledby="detail-title"><div class="detail-bar"><span>CELESCAR / FICHA</span><button class="icon-button" id="detail-close" aria-label="Cerrar ficha">×</button></div><div id="detail-body"></div></dialog>

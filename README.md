@@ -1,50 +1,52 @@
-# CELESGROUP — Portafolio V0.9.2
+# CELESGROUP — V0.10 (preview)
+Producción protegida: V0.9.2, commit `b7349177b7578efebee51354d6f07db4006b5318`.
+Desarrollo exclusivamente en `feature/v0.10`. No fusionar ni promover sin aprobación explícita.
 
-Sitio estático para CELESCAR y CELESPAINT, publicado desde `CELESGROUP/portafolio`, rama `main`, en https://celesgroup.vercel.app/.
+## Arquitectura
+Sitio estático multipágina, sin framework ni JavaScript de terceros en el navegador.
+- `/`: home institucional.
+- `/celescar`: vitrina, fichas, Clientes felices, servicios, compra y contacto.
+- `/celespaint`: catálogo de servicios, video real, proceso y contacto.
+- `/historia`: origen, reel, evolución y unidades; contenido faltante identificado.
+- `src/layout.html`: cabecera, menú y pie compartidos.
+- `src/pages/`: contenido de cada página.
+- `app.js`: navegación, tema, compartir y compatibilidad de enlaces.
+- `src/celescar.js`: catálogo, filtros, fichas y galería.
+- `styles.css`: estilos mobile-first.
+- `scripts/build.mjs`: HTML estático y derivados WebP.
+- `scripts/validate.mjs`: validación de sintaxis, esquema público, medios y vínculos.
+- `scripts/preview.mjs`: servidor de preview local.
 
-## Datos y actualización del recomendado
+## Operación
+Node >=22. Instalar con `npm install`; ejecutar `npm run build` y `npm run preview`.
+Abrir http://localhost:4173. `npm run validate` comprueba fuentes.
+Vercel compila con `npm run build` y sirve únicamente `dist/`.
+Sharp 0.34.3 se usa exclusivamente al compilar. No hay procesamiento remoto de fotos en cada visita.
 
-La fuente comercial es el Google Sheet INVENTARIO_MAESTRO_CELESCAR, pestaña Untitled:
-https://docs.google.com/spreadsheets/d/1VKKQlP0S9iOx1jeNP5yOrBvrStjAKWXM1RtZKaYTlbI/edit
+## Datos y actualización controlada
+`data/catalogo.json`: 12 registros públicos de la V0.9.2, datos comerciales intactos.
+`data/media.json`: asociaciones de fotografía, nunca en app.js.
+`data/site.json`: imágenes editoriales, redes y contacto.
+`data/entregas.json`: entregas independientes; únicamente PUBLICADO se muestra.
+`data/historia.json`: textos, fotografías y video con estado de publicación.
+1. Actualizar fuente respaldada.
+2. Validar datos y autorización de fotografías.
+3. Generar derivados con build.
+4. Revisar preview, móvil, escritorio y reporte de medios.
+5. Obtener aprobación antes de PR, merge y producción.
 
-`data/catalogo.json` contiene exclusivamente los campos comerciales para publicar. La ficha lee ese archivo y `data/media.json` define portada y galería por referencia. No se publican vendedor, precio de venta, fuentes de WhatsApp ni alertas administrativas.
+## Fotografías
+Los archivos existentes se conservan sin cambios. La compilación genera versiones 240/640/1280 y manifiesto responsive. Las fichas muestran cada imagen completa.
+En preview, `/qa/CC001` a `/qa/CC012` permiten auditoría visual; `/qa/image-report.json` registra hashes, dimensiones y tamaños. No se generan en VERCEL_ENV=production.
+No usar esos reportes como prueba de verificación visual: esta se documenta aparte.
 
-Para cambiar el recomendado semanalmente, editar el objeto `featured`:
-- `ref`: referencia disponible, por ejemplo CC012.
-- `image`: ruta de una fotografía real existente.
-- `lead`: frase corta para la portada.
+## Privacidad
+Nunca subir originales con datos personales, tarjetas de propiedad ni documentos administrativos.
+La estructura privada de originales debe mantenerse fuera del repositorio:
+`VEHICULOS_VENDIDOS/01_ORIGINALES/{INSTAGRAM,WHATSAPP,FOTOS_DIRECTAS}/`.
+Únicamente derivados revisados en `VEHICULOS_VENDIDOS/02_WEB/`.
+La exclusión de Git es preventiva, no una autorización para publicar imágenes sin revisar.
 
-La foto permanece fija. No hay temporizador ni cambio automático por semana. Seleccionar un nuevo recomendado y publicar el cambio cuando corresponda. Para modificar los demás datos, revisar la hoja vigente y actualizar sus campos correspondientes en el JSON. Esta versión no sincroniza Drive en segundo plano.
-
-## V0.9
-
-- Recomendado integrado con fotografía frontal fija de mayor tamaño, sin movimiento, contador ni pausa.
-- Vitrina con título breve, menor espacio vertical, tarjetas mayores y separación reducida.
-- Descripciones comerciales escritas en Untitled!AE2:AE13 y visibles en las fichas.
-- Características, documentación, fechas de vencimiento y condiciones comerciales provenientes de la hoja.
-- Pico y placa presenta solamente el dígito registrado; no calcula restricciones de circulación.
-- Datos vacíos se muestran por confirmar; una fecha de documento anterior al día actual en Bogotá indica que debe confirmarse su renovación.
-- Instagram y Facebook con accesos e iconos visibles. WhatsApp conserva indicación de número pendiente; no se inventa un teléfono.
-- Clic y teclado abren las fichas; el arrastre horizontal conserva su umbral independiente.
-- Video real de CELESPAINT, selector de unidad y temas claro/oscuro conservados.
-
-Histórico y evidencia de versiones: `docs/BITACORA.md`.
-
-
-## V0.9.1
-
-- Portada editorial CELESCAR antes del selector de unidades, con CC001 como imagen real de entrada.
-- Las asociaciones de fotografías salen de `app.js` y pasan a `data/media.json`.
-- CC006 y CC007 dejan de mostrar galerías no verificadas; por seguridad se conserva únicamente su portada pública correcta mientras se promueven los sets normalizados.
-- En Drive se preparó un set de 8 fotografías web para CC006 y otro de 8 para CC007 en `03_FOTOS_WEB`.
-- WhatsApp se habilita con el contacto comercial publicado y mensajes precargados por referencia, vehículo y precio.
-- Respaldo previo de producción: rama `backup/v0.9-2026-10-07`.
-
-
-## V0.9.2
-
-- Galerías reales verificadas para CC006 y CC007.
-- Ocho imágenes distintas por vehículo en ficha: portada más siete complementarias.
-- Recursos organizados en carpetas propias por referencia.
-- `data/media.json` concentra la asociación de medios; `app.js` ya no contiene esa matriz.
-- La publicación desde Drive e Inventario Maestro sigue siendo controlada y no automática.
+## Estado de contenidos
+No hay entregas aprobadas ni material histórico en la base. Los componentes y estados vacíos están implementados. La aceptación de contenidos requiere archivos reales y autorización.
+Documentación: docs/V0.10_AUDITORIA.md, docs/V0.10_QA.md y docs/V0.10_ACTUALIZACION.md.
