@@ -7,7 +7,7 @@ const json=async p=>JSON.parse(await readFile(p,'utf8'));
 const publicFields=new Set(['ref','status','brand','line','version','year','box','motor','km','fuel','color','doors','registration','inspection','plateDigit','oneOwner','soat','technical','price','negotiable','tradeIn','pitch']);
 const safe=p=>typeof p==='string'&&/^(assets\/|VEHICULOS_VENDIDOS\/02_WEB\/)/.test(p)&&!p.split('/').includes('..')&&!p.includes('\\')&&!/01_ORIGINALES|tarjeta|traspaso|identificaci[oó]n|administrativ/i.test(p);
 export async function validateSources(){
- for(const js of ['app.js','theme.js','src/celescar.js','scripts/build.mjs','scripts/validate.mjs','scripts/preview.mjs']){
+ for(const js of ['app.js','theme.js','src/celescar.js','src/home.js','scripts/build.mjs','scripts/validate.mjs','scripts/preview.mjs']){
   const r=spawnSync(process.execPath,['--check',js],{encoding:'utf8'});assert.equal(r.status,0,js+': '+r.stderr);
  }
  const catalog=await json('data/catalogo.json'),media=await json('data/media.json'),site=await json('data/site.json'),deliveries=await json('data/entregas.json'),story=await json('data/historia.json');
@@ -29,11 +29,15 @@ export async function validateSources(){
  assert(layout.includes('EXPERIENCIA AUTOMOTRIZ'),'Missing approved Spanish tagline');
  assert(build.includes('share-whatsapp')&&app.includes('api.whatsapp.com/send?text='),'Missing header WhatsApp sharing');
  assert(css.includes('body[data-page="home"] main{height:calc(100dvh - 76px)'),'Homepage is not bounded to viewport');
- assert(css.includes('.destinations a:hover'),'Missing destination hover affordance');
+ assert(css.includes('.cinema-tab.is-active'),'Missing cinematic navigation styles');
  // V0.10 follow-up: mobile routes, catalog priority and section labels.
  const carPage=await readFile('src/pages/celescar.html','utf8');
  const carJs=await readFile('src/celescar.js','utf8');
- assert(home.includes('<p class="gateway-tagline">EXPERIENCIA AUTOMOTRIZ</p>'),'Homepage tagline missing below title');
+ assert(home.includes('EXPERIENCIA AUTOMOTRIZ'),'Homepage tagline missing');
+ assert((home.match(/role="tabpanel"/g)||[]).length===3,'Expected three cinematic scenes');
+ assert(home.includes('href="/historia"')&&home.includes('href="/celescar"')&&home.includes('href="/celespaint"'),'Missing original navigation routes');
+ assert(build.includes('src/home.js')&&build.includes('home.js?v=cinema1'),'Home module not included in build');
+ assert((home.match(/<h1[\\s>]/g)||[]).length===1,'Homepage must keep one h1');
  assert(!home.includes('<i aria-hidden="true">↗</i>'),'Homepage cards must not contain arrows');
  assert(carPage.includes('<h2>Nuestros Servicios</h2>'),'Services heading incorrect');
  assert(carPage.includes('<h2>Proceso de venta</h2>'),'Sales process heading incorrect');
