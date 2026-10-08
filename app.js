@@ -16,13 +16,11 @@ export async function share(title = document.title, url = location.href) {
  catch(e) { if(e.name !== 'AbortError') toast('Copia el enlace desde la barra de dirección'); }
 }
 document.querySelectorAll('.share').forEach(b => b.addEventListener('click', () => share()));
-// Direct WhatsApp sharing of the current site's home URL (preview or production).
-document.querySelectorAll('.share-whatsapp').forEach(b => b.addEventListener('click', () => {
+// WhatsApp share links point at this environment's home URL (preview or production).
+document.querySelectorAll('.share-whatsapp').forEach(link => {
  const url = new URL('/', location.href).href;
- const target = 'https://api.whatsapp.com/send?text=' + encodeURIComponent('Conoce CELESGROUP: ' + url);
- const opened = window.open(target, '_blank', 'noopener,noreferrer');
- if (!opened) location.assign(target);
-}));
+ link.href = 'https://api.whatsapp.com/send?text=' + encodeURIComponent('Conoce CELESGROUP: ' + url);
+});
 // Keep old shared links working after the root becomes the institutional home.
 if(document.body.dataset.page === 'home' && /^#(vehiculo-CC\d{3}|celescar|celespaint|portafolio|entregas|contacto|confianza)$/.test(location.hash)) {
  const destination=location.hash === '#celespaint' ? '/celespaint' : '/celescar';
