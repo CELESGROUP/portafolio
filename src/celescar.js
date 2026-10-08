@@ -1,4 +1,4 @@
-import { share, toast } from '/app.js?v=0.10.2';
+import { share, toast } from '/app.js?v=0.11.0';
 const $ = selector => document.querySelector(selector);
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const num = n => new Intl.NumberFormat('es-CO').format(n);
