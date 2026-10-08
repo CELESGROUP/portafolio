@@ -1,4 +1,4 @@
-import { share, toast } from '/app.js?v=0.10.0';
+import { share, toast } from '/app.js?v=0.10.2';
 const $ = selector => document.querySelector(selector);
 const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const num = n => new Intl.NumberFormat('es-CO').format(n);
@@ -27,7 +27,7 @@ function renderCars() {
  const query=normalize($('#search').value.trim()), box=$('#transmission').value, limit=Number($('#price').value)||Infinity;
  const filtered=cars.filter(c=>normalize([c.ref,c.brand,c.line,c.version,c.year].join(' ')).includes(query)&&(!box||box===c.box)&&(limit===Infinity||(Number.isFinite(c.price)&&c.price<=limit)));
  $('#result-count').textContent=filtered.length+' vehículo'+(filtered.length===1?'':'s');
- rail.innerHTML=filtered.length?filtered.map(c=>'<article class="car-card"><a href="/celescar#vehiculo-'+escapeHTML(c.ref)+'" data-car="'+escapeHTML(c.ref)+'" aria-label="Ver ficha de '+escapeHTML(c.ref+' · '+c.brand+' '+c.line)+'"><div class="car-photo">'+imageTag(c.cover,c.brand+' '+c.line+' · '+c.ref,'loading="lazy" decoding="async" draggable="false" sizes="(min-width:1000px) 40vw, (min-width:640px) 56vw, 85vw"')+'<span class="car-ref">'+escapeHTML(c.ref)+'</span></div><div class="car-info"><p class="car-kicker">'+escapeHTML(value(c.year)+' / '+value(c.box))+'</p><h3>'+escapeHTML(c.brand+' '+c.line)+'</h3><p class="car-version">'+escapeHTML(c.version||'')+'</p><div class="card-bottom"><strong>'+money(c.price)+'</strong><span>Ver ficha ↗</span></div></div></a></article>').join(''):'<p class="empty-state">No hay vehículos que coincidan. Prueba otros filtros.</p>';
+ rail.innerHTML=filtered.length?filtered.map(c=>'<article class="car-card"><a href="/celescar#vehiculo-'+escapeHTML(c.ref)+'" data-car="'+escapeHTML(c.ref)+'" aria-label="Ver ficha de '+escapeHTML(c.ref+' · '+c.brand+' '+c.line)+'"><div class="car-photo">'+imageTag(c.cover,c.brand+' '+c.line+' · '+c.ref,'loading="lazy" decoding="async" draggable="false" sizes="(min-width:1000px) 30vw, (min-width:640px) 45vw, 84vw"')+'<span class="car-ref">'+escapeHTML(c.ref)+'</span></div><div class="car-info"><p class="car-kicker">'+escapeHTML(value(c.year)+' / '+value(c.box)+(Number.isFinite(c.km)?' / '+num(c.km)+' km':''))+'</p><h3>'+escapeHTML(c.brand+' '+c.line)+'</h3><p class="car-version">'+escapeHTML(c.version||'')+'</p><div class="card-bottom"><strong>'+money(c.price)+'</strong><span>Ver ficha ↗</span></div></div></a></article>').join(''):'<p class="empty-state">No hay vehículos que coincidan. Prueba otros filtros.</p>';
  const n=[$('#search').value.trim(),box,$('#price').value].filter(Boolean).length;
  $('#filter-toggle').innerHTML='Buscar / filtrar'+(n?' · '+n:'')+' <span aria-hidden="true">'+($('#filter-panel').hidden?'＋':'−')+'</span>';
  rail.scrollLeft=0;
