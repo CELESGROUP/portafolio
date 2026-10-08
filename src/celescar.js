@@ -23,14 +23,69 @@ function whatsapp(c) {
  const message='Hola CELESCAR, me interesa '+c.ref+' · '+c.brand+' '+c.line+' · modelo '+value(c.year)+' · versión '+value(c.version)+' · '+money(c.price)+'. ¿Sigue disponible?';
  return 'https://wa.me/'+site.whatsapp+'?text='+encodeURIComponent(message);
 }
-function renderCars() {
- const query=normalize($('#search').value.trim()), box=$('#transmission').value, limit=Number($('#price').value)||Infinity;
- const filtered=cars.filter(c=>normalize([c.ref,c.brand,c.line,c.version,c.year].join(' ')).includes(query)&&(!box||box===c.box)&&(limit===Infinity||(Number.isFinite(c.price)&&c.price<=limit)));
- $('#result-count').textContent=filtered.length+' vehículo'+(filtered.length===1?'':'s');
- rail.innerHTML=filtered.length?filtered.map(c=>'<article class="car-card"><a href="/celescar#vehiculo-'+escapeHTML(c.ref)+'" data-car="'+escapeHTML(c.ref)+'" aria-label="Ver ficha de '+escapeHTML(c.ref+' · '+c.brand+' '+c.line)+'"><div class="car-photo">'+imageTag(c.cover,c.brand+' '+c.line+' · '+c.ref,'loading="lazy" decoding="async" draggable="false" sizes="(min-width:1000px) 30vw, (min-width:640px) 45vw, 84vw"')+'<span class="car-ref">'+escapeHTML(c.ref)+'</span></div><div class="car-info"><p class="car-kicker">'+escapeHTML(value(c.year)+' / '+value(c.box)+(Number.isFinite(c.km)?' / '+num(c.km)+' km':''))+'</p><h3>'+escapeHTML(c.brand+' '+c.line)+'</h3><p class="car-version">'+escapeHTML(c.version||'')+'</p><div class="card-bottom"><strong>'+money(c.price)+'</strong><span>Ver ficha ↗</span></div></div></a></article>').join(''):'<p class="empty-state">No hay vehículos que coincidan. Prueba otros filtros.</p>';
- const n=[$('#search').value.trim(),box,$('#price').value].filter(Boolean).length;
- $('#filter-toggle').innerHTML='Buscar / filtrar'+(n?' · '+n:'')+' <span aria-hidden="true">'+($('#filter-panel').hidden?'＋':'−')+'</span>';
+let activeQuickFilter='all';
+const matchesFilter=(c,group)=>{
+ const p=Number.isFinite(c.price)?c.price:null;
+ switch(group){
+  case 'auto':return normalize(c.box)==='automatica';
+  case 'manual':return normalize(c.box)==='mecanica';
+  case 'under50':return p!==null&&p<=50000000;
+  case 'from50to90':return p!==null&&p>50000000&&p<=90000000;
+  case 'above90':return p!==null&&p>90000000;
+  default:return true;
+ }
+};
+function updateQuickCounts(){
+ document.querySelectorAll('[data-count]').forEach(el=>{
+  const group=el.dataset.count, n=cars.filter(c=>matchesFilter(c,group)).length;
+  el.textContent='('+n+')';
+ });
+}
+function renderCars(){
+ const query=normalize($('#search').value.trim());
+ const choice=$('#sort').value;
+ let filtered=cars.filter(c=>matchesFilter(c,activeQuickFilter)&&normalize([c.ref,c.brand,c.line,c.version,c.year].join(' ')).includes(query));
+ // Keep vehicles without published prices at the end, never invent amounts.
+ if(choice==='recent')filtered=[...filtered].sort((a,b)=>(b.year||0)-(a.year||0));
+ else if(choice==='price-asc'||choice==='price-desc'){
+  const direction=choice==='price-asc'?1:-1;
+  filtered=[...filtered].sort((a,b)=>{
+   const aOk=Number.isFinite(a.price),bOk=Number.isFinite(b.price);
+   if(aOk!==bOk)return aOk?-1:1;
+   return aOk&&bOk?direction*(a.price-b.price):0;
+  });
+ }
+ $('#result-count').textContent=filtered.length+' vehículo'+(filtered.length===1?'':'s')+' disponible'+(filtered.length===1?'':'s');
+ rail.innerHTML=filtered.length?filtered.map(c=>{
+  const carRef=escapeHTML(c.ref), title=escapeHTML(c.brand+' '+c.line);
+  const href='/celescar#vehiculo-'+carRef, chat=whatsapp(c);
+  const year=escapeHTML(value(c.year)), gearbox=escapeHTML(value(c.box));
+  const km=Number.isFinite(c.km)?escapeHTML(num(c.km)+' km'):'Por confirmar';
+  return '<article class="car-card sales-car-card">'+
+   '<a class="sales-card-primary" data-car="'+carRef+'" href="'+href+'" aria-label="Abrir ficha de '+title+' '+carRef+'">'+
+    '<div class="car-photo">'+imageTag(c.cover,c.brand+' '+c.line+' · '+c.ref,'loading="lazy" decoding="async" draggable="false" sizes="(min-width:1200px) 31vw, (min-width:640px) 43vw, 84vw"')+
+     '<span class="car-ref">'+carRef+'</span></div>'+
+    '<div class="car-info"><h3>'+title+'</h3><p class="car-version">'+escapeHTML(c.version||'Versión por confirmar')+'</p>'+
+     '<div class="sales-specs"><span><small>Modelo</small>'+year+'</span><span><small>Caja</small>'+gearbox+'</span><span><small>Recorrido</small>'+km+'</span></div>'+
+     '<strong class="sales-price">'+money(c.price)+'</strong></div>'+
+   '</a>'+
+   '<div class="sales-card-actions"><a data-car="'+carRef+'" href="'+href+'">VER FICHA</a>'+
+    '<a href="'+chat+'" target="_blank" rel="noopener noreferrer" aria-label="Consultar '+title+' por WhatsApp">WHATSAPP</a></div>'+
+  '</article>';
+ }).join(''):'<p class="empty-state">No hay vehículos que coincidan con la búsqueda. Prueba otro filtro.</p>';
  rail.scrollLeft=0;
+ updateRailPosition(filtered.length);
+}
+function updateRailPosition(count){
+ const first=rail.querySelector('.car-card');
+ const total=count??rail.querySelectorAll('.car-card').length;
+ const label=$('#rail-position');
+ if(!label)return;
+ if(!total){label.textContent='00 / 00';return;}
+ const gap=parseFloat(getComputedStyle(rail).columnGap)||0;
+ const step=(first?.getBoundingClientRect().width||rail.clientWidth)+gap;
+ const index=Math.min(total,Math.max(1,Math.round(rail.scrollLeft/step)+1));
+ label.textContent=String(index).padStart(2,'0')+' / '+String(total).padStart(2,'0');
 }
 const gallery=c=>[...new Set([c.cover,...(c.gallery||[])])];
 function changePhoto(index) {
@@ -86,16 +141,26 @@ rail.addEventListener('pointerup',endDrag);rail.addEventListener('pointercancel'
 rail.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();rail.scrollBy({left:rail.clientWidth*(e.key==='ArrowRight'?0.8:-0.8),behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}});
 $('#rail-prev').onclick=()=>rail.scrollBy({left:-rail.clientWidth*.8,behavior:'smooth'});
 $('#rail-next').onclick=()=>rail.scrollBy({left:rail.clientWidth*.8,behavior:'smooth'});
-$('#filter-toggle').onclick=()=>{const p=$('#filter-panel');p.hidden=!p.hidden;$('#filter-toggle').setAttribute('aria-expanded',String(!p.hidden));renderCars();if(!p.hidden)$('#search').focus();};
-$('.filters').onsubmit=e=>e.preventDefault();
-$('.filters').addEventListener('reset',()=>{requestAnimationFrame(renderCars)});
-['search','transmission','price'].forEach(id=>$('#'+id).addEventListener(id==='search'?'input':'change',renderCars));
+document.querySelectorAll('.quick-filter').forEach(button=>button.addEventListener('click',()=>{
+ activeQuickFilter=button.dataset.filter;
+ document.querySelectorAll('.quick-filter').forEach(b=>{
+  const active=b===button;
+  b.classList.toggle('is-active',active);
+  b.setAttribute('aria-pressed',String(active));
+ });
+ renderCars();
+}));
+$('#search').addEventListener('input',renderCars);
+$('#sort').addEventListener('change',renderCars);
+rail.addEventListener('scroll',()=>updateRailPosition(),{passive:true});
+window.addEventListener('resize',()=>updateRailPosition(),{passive:true});
 async function initialize() {
  try {
   const paths=['catalogo','media','images','site'];
   const data=await Promise.all(paths.map(async name=>{const r=await fetch('/data/'+name+'.json');if(!r.ok)throw new Error(name);return r.json();}));
   const [catalog,media,manifest,config]=data;images=manifest;site=config;updatedAt=catalog.updatedAt;
   cars=catalog.cars.filter(c=>c.status==='DISPONIBLE').map(c=>({...c,...media[c.ref]}));
+  updateQuickCounts();
   renderCars();$('#catalog-date').textContent='Fotografías reales · Inventario actualizado el '+date(updatedAt)+'.';
   routeDetail();
  } catch { $('#result-count').textContent='Vitrina no disponible';rail.innerHTML='<div class="empty-state"><p>No pudimos cargar los vehículos.</p><button class="outline-button" id="retry">Volver a intentar</button></div>';$('#retry').onclick=initialize; }
