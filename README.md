@@ -1,4 +1,4 @@
-# CELESGROUP — Portafolio V0.9.2
+# CELESGROUP — Portafolio V0.11
 
 Sitio estático para CELESCAR y CELESPAINT, publicado desde `CELESGROUP/portafolio`, rama `main`, en https://celesgroup.vercel.app/.
 
@@ -48,3 +48,13 @@ Histórico y evidencia de versiones: `docs/BITACORA.md`.
 - Recursos organizados en carpetas propias por referencia.
 - `data/media.json` concentra la asociación de medios; `app.js` ya no contiene esa matriz.
 - La publicación desde Drive e Inventario Maestro sigue siendo controlada y no automática.
+
+
+## V0.11 · sitio multipágina desde el diseño aprobado
+
+- Seis páginas con dirección propia: `/` (portada), `/celescar`, `/celespaint`, `/entregas`, `/financiacion` y `/historia`.
+- Identidad de color por página: CELESCAR azul, CELESPAINT cobre, ENTREGAS verde claro, FINANCIACIÓN dorado.
+- Navegación: encabezado fijo que se oculta al bajar y reaparece al subir, ruta "Inicio / página", pie con todas las páginas y las dos líneas de WhatsApp, tarjeta "Sigue con" al final de cada página y botón flotante de WhatsApp (317 en CELESPAINT, 315 en las demás).
+- La vitrina y el simulador leen `data/catalogo.json` y `data/media.json`; la ficha enlaza al simulador con el carro ya elegido (`/financiacion?ref=CC006`).
+- Medios de las páginas en `assets/v11/media/`, tipografía Jost alojada en `assets/v11/fonts/` y Preact 10.24.3 en `assets/v11/js/`.
+- Las páginas se generan con `tools/dc2site.py` a partir de los archivos del diseño; no editar a mano los `.js` generados.

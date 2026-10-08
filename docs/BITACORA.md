@@ -101,3 +101,18 @@ Base protegida: `1b5edfadd9a8976977a19d66af5b04fe10c3f8b6`; respaldo creado en `
 - Cada ficha presenta 8 imágenes únicas: portada más 7 complementarias.
 - Se incrementa la versión de catálogo y caché a V0.9.2.
 - La documentación privada de los vehículos permanece fuera del repositorio público.
+
+
+## 2026-10-08 — V0.11 · sitio multipágina desde el diseño aprobado
+
+Base: V0.9.2 en `main` (`b734917`). Rama de trabajo: `v0.11-diseno-multipagina`.
+
+- Se reemplaza la página única por seis páginas generadas desde el diseño aprobado: portada, CELESCAR, CELESPAINT, ENTREGAS, FINANCIACIÓN y NUESTRA HISTORIA.
+- Correcciones de navegación de la auditoría: encabezado fijo con ocultamiento al bajar, ruta de ubicación, pie completo con páginas, contacto de ambas líneas y redes, tarjeta "Sigue con", WhatsApp flotante, acceso "Simular cuota" desde la ficha, "Ver carros disponibles" en ENTREGAS y tarjeta de FINANCIACIÓN en NUESTRA HISTORIA.
+- La vitrina conserva la fuente de datos `data/catalogo.json` + `data/media.json`; cada ficha muestra portada más galería completa.
+- Simulador de crédito con tasa inicial de 20 % E.A. y rango 15–28 %; cuota aproximada sin seguros, sujeta a aprobación de la entidad.
+- Material de Instagram publicado solo con piezas autorizadas y sin menores.
+- Tipografía Jost alojada en el sitio (sin dependencia de Google Fonts).
+- Se retiran `app.js` y `styles.css` de V0.9.2; el respaldo queda en el historial de `main`.
+
+Validación local en Chromium (escritorio 1440 px y móvil 390 px): las seis páginas cargan sin errores de JavaScript; 12 tarjetas en la vitrina; la ficha abre con su galería y su enlace "Simular cuota"; la búsqueda filtra; el simulador recibe la referencia y recalcula; el menú móvil abre; el encabezado se oculta y reaparece.
