@@ -21,10 +21,10 @@ DESC = {
     'Financiacion': 'Financiación CELESCAR · Simula tu cuota y conoce las opciones de crédito.',
 }
 VOID = {'img', 'source', 'input', 'br', 'hr', 'meta', 'link', 'area', 'base', 'col', 'embed', 'track', 'wbr'}
-A = '/assets/v11'
+A = '/assets/site'
 
 # ---------- media ----------
-media_dir = os.path.join(REPO, 'assets/v11/media')
+media_dir = os.path.join(REPO, 'assets/site/media')
 os.makedirs(media_dir, exist_ok=True)
 blobmap = {}
 for fn in os.listdir(BLOBS):
@@ -139,7 +139,7 @@ def kids(node, scope):
     return ''.join(', ' + p for p in parts)
 
 # ---------- shared runtime ----------
-os.makedirs(os.path.join(REPO, 'assets/v11/js'), exist_ok=True)
+os.makedirs(os.path.join(REPO, 'assets/site/js'), exist_ok=True)
 CARS_JS = r'''
 export async function loadCars() {
   const [cat, media] = await Promise.all([
@@ -156,7 +156,7 @@ export async function loadCars() {
     });
 }
 '''.replace('__VER__', VER)
-open(os.path.join(REPO, 'assets/v11/js/cars.js'), 'w').write(CARS_JS)
+open(os.path.join(REPO, 'assets/site/js/cars.js'), 'w').write(CARS_JS)
 
 SITE_JS = r'''
 // Encabezado que se esconde al bajar y reaparece al subir (páginas internas)
@@ -181,9 +181,9 @@ export function stickyHeader() {
   }, { passive: true });
 }
 '''
-open(os.path.join(REPO, 'assets/v11/js/site.js'), 'w').write(SITE_JS)
+open(os.path.join(REPO, 'assets/site/js/site.js'), 'w').write(SITE_JS)
 shutil.copyfile(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'vendor/package/dist/preact.module.js'),
-                os.path.join(REPO, 'assets/v11/js/preact.module.js'))
+                os.path.join(REPO, 'assets/site/js/preact.module.js'))
 
 # ---------- pages ----------
 for page, (out, jsname, path) in PAGES.items():
@@ -241,7 +241,7 @@ mount.textContent = '';
 render(h(Component, {json.dumps(props)}), mount);
 {"stickyHeader();" if page != 'Main' else ''}
 '''
-    open(os.path.join(REPO, 'assets/v11/js', jsname + '.js'), 'w').write(js)
+    open(os.path.join(REPO, 'assets/site/js', jsname + '.js'), 'w').write(js)
 
     helmet = re.sub(r'<link[^>]*fonts\.(?:googleapis|gstatic)\.com[^>]*>\s*', '', helmet)
     head_extra = ''.join(f"@font-face{{font-family:Jost;font-style:normal;font-weight:{w};font-display:swap;src:url({A}/fonts/jost-latin-{w}-normal.woff2) format('woff2')}}\n" for w in (300, 400, 500, 600)) + '''

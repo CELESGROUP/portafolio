@@ -103,12 +103,16 @@ Base protegida: `1b5edfadd9a8976977a19d66af5b04fe10c3f8b6`; respaldo creado en `
 - La documentación privada de los vehículos permanece fuera del repositorio público.
 
 
-## 2026-10-08 — V0.11 · sitio multipágina desde el diseño aprobado
+## 2026-10-08 — V0.12 · sitio multipágina desde el diseño aprobado
+
+Nota: publicada primero con el nombre V0.11 (commit `28ec719`); se renombra a V0.12 porque `feature/v0.10` y `feature/v0.11-cinematica-ventas` ya existían como líneas de trabajo independientes, sin integrar a `main`.
 
 Base: V0.9.2 en `main` (`b734917`). Rama de trabajo: `v0.11-diseno-multipagina`.
 
+Ajuste posterior: se retira el pie de página ampliado (páginas, contacto y redes) porque en móvil ocupaba demasiado; se vuelve al pie sencillo de una línea y "Contacto" regresa a la sección de contacto de CELESCAR. Los recursos pasan de `assets/v11/` a `assets/site/`.
+
 - Se reemplaza la página única por seis páginas generadas desde el diseño aprobado: portada, CELESCAR, CELESPAINT, ENTREGAS, FINANCIACIÓN y NUESTRA HISTORIA.
-- Correcciones de navegación de la auditoría: encabezado fijo con ocultamiento al bajar, ruta de ubicación, pie completo con páginas, contacto de ambas líneas y redes, tarjeta "Sigue con", WhatsApp flotante, acceso "Simular cuota" desde la ficha, "Ver carros disponibles" en ENTREGAS y tarjeta de FINANCIACIÓN en NUESTRA HISTORIA.
+- Correcciones de navegación de la auditoría: encabezado fijo con ocultamiento al bajar, ruta de ubicación, tarjeta "Sigue con", WhatsApp flotante, acceso "Simular cuota" desde la ficha, "Ver carros disponibles" en ENTREGAS y tarjeta de FINANCIACIÓN en NUESTRA HISTORIA.
 - La vitrina conserva la fuente de datos `data/catalogo.json` + `data/media.json`; cada ficha muestra portada más galería completa.
 - Simulador de crédito con tasa inicial de 20 % E.A. y rango 15–28 %; cuota aproximada sin seguros, sujeta a aprobación de la entidad.
 - Material de Instagram publicado solo con piezas autorizadas y sin menores.

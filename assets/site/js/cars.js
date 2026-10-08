@@ -1,8 +1,8 @@
 
 export async function loadCars() {
   const [cat, media] = await Promise.all([
-    fetch('/data/catalogo.json?v=0.11.0').then((r) => r.json()),
-    fetch('/data/media.json?v=0.11.0').then((r) => r.json())
+    fetch('/data/catalogo.json?v=0.12.0').then((r) => r.json()),
+    fetch('/data/media.json?v=0.12.0').then((r) => r.json())
   ]);
   const abs = (p) => (p && !p.startsWith('/') ? '/' + p : p);
   return (cat.cars || [])
