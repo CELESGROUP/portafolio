@@ -52,7 +52,7 @@ for(const [filename,page,title,description] of pages){
   ORIGIN:story.origen?.estado_publicacion==='PUBLICADO'?'<p>'+esc(story.origen.texto)+'</p>':'<p class="story-pending">Estamos preparando el relato de nuestros primeros pasos. Pronto podrás conocerlo aquí.</p>',
   HISTORY_VIDEO:story.video?.estado_publicacion==='PUBLICADO'?'<video controls playsinline preload="none" poster="'+manifest[story.video.poster].src+'"><source src="/'+esc(story.video.archivo_web)+'" type="video/mp4"></video>':'<p class="story-pending">Nuestro video de historia estará disponible próximamente.</p>',
   HISTORY_IMAGES:story.fotografias.filter(x=>x.estado_publicacion==='PUBLICADO').map(x=>'<figure>'+image(x.archivo_web,x.descripcion,'loading="lazy" sizes="80vw"')+'<figcaption>'+esc(x.descripcion)+'</figcaption></figure>').join('')||'<p class="story-pending">Estamos reuniendo las fotografías de nuestra evolución.</p>',
-  SCRIPT:page==='celescar'?'<script type="module" src="/celescar.js?v=0.10.2"></script>':''};
+  SCRIPT:page==='celescar'?'<script type="module" src="/celescar.js?v=0.10.2"></script>':page==='home'?'<script type="module" src="/home.js?v=cinema1"></script>':''};
  let content=await readFile('src/pages/'+filename+'.html','utf8');
  const fill=s=>s.replace(/\{\{([A-Z_]+)\}\}/g,(_,k)=>{if(!(k in variables))throw new Error('Unknown template '+k);return variables[k];});
  content=fill(content);variables.CONTENT=content;
@@ -66,6 +66,7 @@ for(const p of ['styles.css','app.js','theme.js','assets/logo-celesgroup.jpg','a
  await mkdir(path.dirname(path.join(out,p)),{recursive:true});await copyFile(p,path.join(out,p));
 }
 await copyFile('src/celescar.js',path.join(out,'celescar.js'));
+await copyFile('src/home.js',path.join(out,'home.js'));
 if(story.video?.estado_publicacion==='PUBLICADO'){const p=story.video.archivo_web;await mkdir(path.dirname(path.join(out,p)),{recursive:true});await copyFile(p,path.join(out,p));}
 await write('404.html','<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Página no encontrada · CELESGROUP</title><link rel="stylesheet" href="/styles.css"><main class="section"><span class="eyebrow">CELESGROUP / 404</span><h1>Este camino<br>no está disponible.</h1><a class="button primary" href="/">Volver al inicio ↗</a></main></html>');
 // Preview-only visual audit sheets, generated from public media already in the repository.
