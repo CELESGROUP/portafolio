@@ -33,7 +33,7 @@ export async function validateSources(){
  // V0.10 follow-up: mobile routes, catalog priority and section labels.
  const carPage=await readFile('src/pages/celescar.html','utf8');
  const carJs=await readFile('src/celescar.js','utf8');
- assert(home.includes('EXPERIENCIA AUTOMOTRIZ'),'Homepage tagline missing');
+ assert(layout.includes('EXPERIENCIA AUTOMOTRIZ'),'Brand tagline missing from shared header');
  assert((home.match(/role="tabpanel"/g)||[]).length===3,'Expected three cinematic scenes');
  assert(home.includes('href="/celescar#portafolio"')&&home.includes('href="/celespaint"')&&home.includes('href="/celescar#servicios"'),'Missing commercial navigation');
  assert(build.includes("['/historia','Nuestra historia']"),'Nuestra historia must stay in the main menu');
