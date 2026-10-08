@@ -34,7 +34,7 @@ export async function validateSources(){
  const carPage=await readFile('src/pages/celescar.html','utf8');
  const carJs=await readFile('src/celescar.js','utf8');
  assert(home.includes('<p class="gateway-tagline">EXPERIENCIA AUTOMOTRIZ</p>'),'Homepage tagline missing below title');
- assert(!/<i[^>]*>↗<\\/i>/.test(home),'Homepage cards must not contain arrows');
+ assert(!home.includes('<i aria-hidden="true">↗</i>'),'Homepage cards must not contain arrows');
  assert(carPage.includes('<h2>Nuestros Servicios</h2>'),'Services heading incorrect');
  assert(carPage.includes('<h2>Proceso de venta</h2>'),'Sales process heading incorrect');
  assert((carPage.match(/<li><h3>/g)||[]).length===5,'Process must preserve five steps');
