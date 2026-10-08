@@ -41,8 +41,8 @@ const pages=[['index','home','Inicio','Compra, venta y cuidado automotriz. Descu
 for(const [filename,page,title,description] of pages){
  const context=page==='celescar'?[['portafolio','Vehículos'],['entregas','Clientes felices'],['servicios','Servicios'],['proceso','Proceso']]:page==='celespaint'?[['servicios','Servicios'],['trabajos','Trabajos'],['proceso','Proceso']]:[];
  const variables={TITLE:title,DESCRIPTION:description,PAGE:page,
-  NAV:(page==='home'?navLinks.filter(([href])=>href!=='/historia'):navLinks).map(([href,label])=>'<a href="'+href+'"'+(href==='/'+page?' aria-current="page"':'')+'>'+label+'</a>').join('')+(page==='home'?'<button type="button" class="share-whatsapp">Compartir</button>':'')+'<a href="'+(['celescar','celespaint'].includes(page)?'#contacto':whatsapp(page))+'">Contacto</a>',
-  MOBILE_ACTION:page==='home'?'<button type="button" class="mobile-share share-whatsapp">Compartir</button>':'<a class="mobile-history" href="/historia">Historia</a>',
+  NAV:(page==='home'?navLinks.filter(([href])=>href!=='/historia'):navLinks).map(([href,label])=>'<a href="'+href+'"'+(href==='/'+page?' aria-current="page"':'')+'>'+label+'</a>').join('')+(page==='home'?'<a class="share-whatsapp" href="https://api.whatsapp.com/send" target="_blank" rel="noopener noreferrer">Compartir</a>':'')+'<a href="'+(['celescar','celespaint'].includes(page)?'#contacto':whatsapp(page))+'">Contacto</a>',
+  MOBILE_ACTION:page==='home'?'<a class="mobile-share share-whatsapp" href="https://api.whatsapp.com/send" target="_blank" rel="noopener noreferrer">Compartir</a>':'<a class="mobile-history" href="/historia">Historia</a>',
   CONTEXT:context.map(([id,label])=>'<a href="/'+page+'#'+id+'">'+label+'</a>').join(''),
   WHATSAPP:whatsapp(page),INSTAGRAM:site.instagram,FACEBOOK:site.facebook,
   HOME_IMAGE:image(site.home.image,site.home.alt,'fetchpriority="high" sizes="(min-width:1000px) 76vw, 100vw"'),
