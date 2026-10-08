@@ -52,7 +52,7 @@ for(const [filename,page,title,description] of pages){
   ORIGIN:story.origen?.estado_publicacion==='PUBLICADO'?'<p>'+esc(story.origen.texto)+'</p>':'<p class="story-pending">Estamos preparando el relato de nuestros primeros pasos. Pronto podrás conocerlo aquí.</p>',
   HISTORY_VIDEO:story.video?.estado_publicacion==='PUBLICADO'?'<video controls playsinline preload="none" poster="'+manifest[story.video.poster].src+'"><source src="/'+esc(story.video.archivo_web)+'" type="video/mp4"></video>':'<p class="story-pending">Nuestro video de historia estará disponible próximamente.</p>',
   HISTORY_IMAGES:story.fotografias.filter(x=>x.estado_publicacion==='PUBLICADO').map(x=>'<figure>'+image(x.archivo_web,x.descripcion,'loading="lazy" sizes="80vw"')+'<figcaption>'+esc(x.descripcion)+'</figcaption></figure>').join('')||'<p class="story-pending">Estamos reuniendo las fotografías de nuestra evolución.</p>',
-  SCRIPT:page==='celescar'?'<script type="module" src="/celescar.js?v=0.10.0"></script>':''};
+  SCRIPT:page==='celescar'?'<script type="module" src="/celescar.js?v=0.10.2"></script>':''};
  let content=await readFile('src/pages/'+filename+'.html','utf8');
  const fill=s=>s.replace(/\{\{([A-Z_]+)\}\}/g,(_,k)=>{if(!(k in variables))throw new Error('Unknown template '+k);return variables[k];});
  content=fill(content);variables.CONTENT=content;
